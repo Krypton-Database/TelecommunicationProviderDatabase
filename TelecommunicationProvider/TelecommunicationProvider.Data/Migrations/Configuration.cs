@@ -8,7 +8,7 @@ namespace TelecommunicationProvider.Data.Migrations
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationsEnabled = true;
             this.ContextKey = "TelecommunicationProvider.Data.TelecommunicationDbContext";
         }
 
