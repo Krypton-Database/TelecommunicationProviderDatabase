@@ -42,7 +42,6 @@
 
                             var contract = new Contract()
                             {
-                                Id = contractId,
                                 StartDate = contractStartDate,
                                 EndDate = contractsEndDate,
                                 TelephoneNumberId = telephoneNumberId,
