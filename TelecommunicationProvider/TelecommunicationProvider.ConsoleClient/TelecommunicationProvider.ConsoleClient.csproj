@@ -38,6 +38,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -63,6 +69,10 @@
     <ProjectReference Include="..\TelecommunicationProvider.Models\TelecommunicationProvider.Models.csproj">
       <Project>{9f2d5a17-c69f-48ea-98d3-61773b10808b}</Project>
       <Name>TelecommunicationProvider.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TelecommunicationProvider.MongoDb\TelecommunicationProvider.MongoDb.csproj">
+      <Project>{cd815246-d277-4bff-9d05-4d6f8a78f763}</Project>
+      <Name>TelecommunicationProvider.MongoDb</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

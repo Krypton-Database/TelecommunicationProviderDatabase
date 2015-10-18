@@ -5,7 +5,7 @@ namespace TelecommunicationProvider.Data.Migrations
     using System.Linq;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
-    using TelecommunicationProvider.Models;
+    using TelecommunicationProvider.Models.SqlServerModels;
 
 
     public sealed class Configuration : DbMigrationsConfiguration<TelecommunicationDbContext>
