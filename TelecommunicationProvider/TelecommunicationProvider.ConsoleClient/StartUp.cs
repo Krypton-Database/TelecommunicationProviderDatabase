@@ -17,7 +17,6 @@
         private const string SampleContractsDataExcelFolderZipPathSource = @"..\..\..\..\Data\Contracts.zip";
         private const string SampleContractsDataExcelFolderZipPathTempDestination = @"..\..\..\..\Data\UnZipContracts\";
 
-
         public static void Main()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<TelecommunicationDbContext, Configuration>());
@@ -102,8 +101,8 @@
                     UserId = item.UserId
                 };
                 telecommunicationDbContext.TelephoneNumbers.Add(phone);
-            telecommunicationDbContext.SaveChanges();
-        }
+                telecommunicationDbContext.SaveChanges();
+            }
 
             foreach (var item in addressCollection)
             {

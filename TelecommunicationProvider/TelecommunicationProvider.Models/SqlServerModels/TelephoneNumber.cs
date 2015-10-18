@@ -2,9 +2,6 @@
 {
     using System.Collections.Generic;
 
-    using MongoDB.Bson;
-    using MongoDB.Bson.Serialization.Attributes;
-
     public class TelephoneNumber
     {
         private ICollection<Contract> contracts;

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class RandomGenerator 
+    public class RandomGenerator
     {
         private const string Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -47,7 +47,7 @@
             Random gen = new Random();
 
             int range = (end - start).Days;
-            return start.AddDays(GetRandomNumber(0, range-1));
+            return start.AddDays(this.GetRandomNumber(0, range - 1));
         }
     }
 }

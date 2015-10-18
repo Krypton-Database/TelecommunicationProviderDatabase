@@ -2,16 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text.RegularExpressions;
     using System.Xml;
-    using TelecommunicationProvider.Models;
     using TelecommunicationProvider.Models.SqlServerModels;
 
     public class XmlImporter
     {
         private const string XmlFileExtensionPattern = @".xml\b";
 
-       // private const string ContractsXmlFilePattern = @"*+\Contracts-\d{2}-\w{3}-\d{4}.xml\b";
+        // private const string ContractsXmlFilePattern = @"*+\Contracts-\d{2}-\w{3}-\d{4}.xml\b";
 
         private const string InvalidFileNameMessage = "Provided file name is invalid";
 

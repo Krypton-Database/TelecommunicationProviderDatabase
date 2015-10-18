@@ -6,22 +6,20 @@
     using System.Data;
     using System.Data.OleDb;
     using System.IO;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using TelecommunicationProvider.Models;
     using TelecommunicationProvider.Models.SqlServerModels;
 
     public class ExcelImporter
     {
         private const string WorksheetFileExtensionPattern = @".xls[x]?\b";
         private const string ContractsWorksheetFilePattern = @"\Contracts-\d{2}-\w{3}-\d{4}.xls[x]?\b";
-        private const string InvalidFileNameMessage = @"Provided file name is either invalid or does not match 
+
+        private const string InvalidFileNameMessage = @"Provided file name is either invalid or does not match
                                                     the naming convention for an xls/xlsx [{0}] data file.";
 
         public ICollection<Contract> ImportContractsDataFromDirectory(string directoryPath)
         {
             IEnumerable<string> filePaths = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
-                                    // .Where(p => Regex.IsMatch(p, ContractsWorksheetFilePattern));
+            // .Where(p => Regex.IsMatch(p, ContractsWorksheetFilePattern));
 
             ICollection<Contract> importedContracts = new HashSet<Contract>();
 

@@ -1,7 +1,6 @@
 ﻿namespace TelecommunicationProvider.MongoDb
 {
     using System.Collections.Generic;
-
     using MongoDB.Driver;
     using TelecommunicationProvider.Models.MongoDbModels;
 

@@ -33,7 +33,6 @@
             }
         }
 
-
         public MongoCollection<TelephoneNumber> TelephoneNumber
         {
             get

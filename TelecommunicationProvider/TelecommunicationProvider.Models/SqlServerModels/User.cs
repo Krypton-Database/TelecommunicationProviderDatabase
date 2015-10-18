@@ -1,10 +1,6 @@
 ﻿namespace TelecommunicationProvider.Models.SqlServerModels
 {
-    using System.Collections;
     using System.Collections.Generic;
-
-    using MongoDB.Bson;
-    using MongoDB.Bson.Serialization.Attributes;
 
     public class User
     {
