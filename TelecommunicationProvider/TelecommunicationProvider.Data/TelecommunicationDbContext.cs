@@ -1,7 +1,6 @@
 ﻿namespace TelecommunicationProvider.Data
 {
     using System.Data.Entity;
-
     using TelecommunicationProvider.Models;
 
     public class TelecommunicationDbContext : DbContext
