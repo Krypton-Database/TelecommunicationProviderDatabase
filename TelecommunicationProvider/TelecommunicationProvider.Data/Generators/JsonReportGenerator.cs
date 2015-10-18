@@ -11,16 +11,15 @@
 
         public JsonReportGenerator()
             {
-            this.Income = 0;
-            this.Id = package.Id;
-            this.Name = package.Name;
-            this.Price = package.Price;
-            this.Contracts = package.Contracts;
+                this.Income = 0;
+                this.Id = package.Id;
+                this.Name = package.Name;
+                this.Price = package.Price;
+                this.Contracts = package.Contracts;
             }
 
-        public static void generateJsonReport()
+        public decimal? generateIncome()
             {
-                var serializer = new JavaScriptSerializer();
                 var objectToSerialize = new JsonReportGenerator();
                 decimal? totalIncome = 0;
 
@@ -28,6 +27,20 @@
                 {
                     totalIncome += objectToSerialize.Price;
                 }
+
+                return totalIncome;
+            }
+
+        public Dictionary<string, dynamic> getJson(decimal? totalIncome)
+            {
+            var json = new Dictionary<string, dynamic>
+                {
+                    { "product-id", this.Id },
+                    { "product-name", this.Name },
+                    { "total-contract-quantity", this.Contracts.Count },
+                    { "total-income", totalIncome },
+                };
+            return json;
             }
 
         public int Income { get; set; }
