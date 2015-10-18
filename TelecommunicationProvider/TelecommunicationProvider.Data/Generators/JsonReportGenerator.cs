@@ -7,20 +7,37 @@
 
     class JsonReportGenerator
         {
-        public static void generateJson()
+        private Package package = new Package();
+
+        public JsonReportGenerator()
+            {
+            this.Income = 0;
+            this.Id = package.Id;
+            this.Name = package.Name;
+            this.Price = package.Price;
+            this.Contracts = package.Contracts;
+            }
+
+        public static void generateJsonReport()
             {
                 var serializer = new JavaScriptSerializer();
-                var package = new Package;
-            
+                var objectToSerialize = new JsonReportGenerator();
                 decimal? totalIncome = 0;
-                int id = package.Id;
-                string name = package.Name;
-                decimal? price = package.Price;
-                ICollection<Contract> contracts = package.Contracts;
-                for (int i = 0; i < contracts.Count; i += 1)
+
+                for (int i = 0; i < objectToSerialize.Contracts.Count; i += 1)
                 {
-                    totalIncome += price;
+                    totalIncome += objectToSerialize.Price;
                 }
             }
+
+        public int Income { get; set; }
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public decimal? Price { get; set; }
+
+        public ICollection<Contract> Contracts { get; set; }
         }
     }
