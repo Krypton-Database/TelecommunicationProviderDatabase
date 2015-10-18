@@ -26,7 +26,7 @@
 
         public virtual Address Address { get; set; }
 
-        public virtual ICollection<TelephoneNumber> TelephoneNunbers
+        public virtual ICollection<TelephoneNumber> TelephoneNumbers
         {
             get { return this.telephoneNumber; }
             set { this.telephoneNumber = value; }
