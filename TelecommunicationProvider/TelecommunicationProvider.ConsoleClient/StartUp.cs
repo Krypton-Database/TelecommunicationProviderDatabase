@@ -33,7 +33,7 @@
             db.SaveChanges();
             Console.WriteLine(db.Adresses.Count());
 
-           // ImportContractsFromXml(db);
+            ImportContractsFromXml(db);
             ImportContractsFromExcel(db);
         }
 
