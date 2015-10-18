@@ -1,7 +1,6 @@
 namespace TelecommunicationProvider.Data.Migrations
 {
     using System.Data.Entity.Migrations;
-
     using TelecommunicationProvider.Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<TelecommunicationDbContext>

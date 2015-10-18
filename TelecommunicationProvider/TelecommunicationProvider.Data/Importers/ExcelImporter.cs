@@ -5,7 +5,6 @@
     using System.Configuration;
     using System.Data;
     using System.Data.OleDb;
-    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -38,10 +37,10 @@
 
         public ICollection<Contract> ImportContractsDataFromFile(string filePath)
         {
-            //if (!Regex.IsMatch(filePath, ContractsWorksheetFilePattern))
-            //{
+            // if (!Regex.IsMatch(filePath, ContractsWorksheetFilePattern))
+            // {
             //    throw new ArgumentException(string.Format(InvalidFileNameMessage, "Contracts"));
-            //}
+            // }
 
             OleDbConnection connection = new OleDbConnection();
 
