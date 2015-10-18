@@ -2,6 +2,7 @@
 {
     using System.Data.Entity;
     using TelecommunicationProvider.Models;
+    using TelecommunicationProvider.Models.SqlServerModels;
 
     public class TelecommunicationDbContext : DbContext
     {

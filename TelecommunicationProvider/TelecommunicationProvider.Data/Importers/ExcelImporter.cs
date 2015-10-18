@@ -9,6 +9,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using TelecommunicationProvider.Models;
+    using TelecommunicationProvider.Models.SqlServerModels;
 
     public class ExcelImporter
     {
@@ -19,8 +20,8 @@
 
         public ICollection<Contract> ImportContractsDataFromDirectory(string directoryPath)
         {
-            IEnumerable<string> filePaths = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories)
-                                     .Where(p => Regex.IsMatch(p, ContractsWorksheetFilePattern));
+            IEnumerable<string> filePaths = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
+                                    // .Where(p => Regex.IsMatch(p, ContractsWorksheetFilePattern));
 
             ICollection<Contract> importedContracts = new HashSet<Contract>();
 

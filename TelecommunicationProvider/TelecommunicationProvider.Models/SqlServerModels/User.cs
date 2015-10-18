@@ -1,7 +1,10 @@
-﻿namespace TelecommunicationProvider.Models
+﻿namespace TelecommunicationProvider.Models.SqlServerModels
 {
     using System.Collections;
     using System.Collections.Generic;
+
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
 
     public class User
     {
@@ -13,7 +16,7 @@
         }
 
         public int Id { get; set; }
-        
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -26,7 +29,7 @@
 
         public virtual Address Address { get; set; }
 
-        public virtual ICollection<TelephoneNumber> TelephoneNunbers
+        public virtual ICollection<TelephoneNumber> TelephoneNumbers
         {
             get { return this.telephoneNumber; }
             set { this.telephoneNumber = value; }

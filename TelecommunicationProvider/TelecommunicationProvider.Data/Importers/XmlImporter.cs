@@ -5,6 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using TelecommunicationProvider.Models;
+    using TelecommunicationProvider.Models.SqlServerModels;
 
     public class XmlImporter
     {

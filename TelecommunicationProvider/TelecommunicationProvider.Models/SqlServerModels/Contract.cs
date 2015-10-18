@@ -1,4 +1,4 @@
-﻿namespace TelecommunicationProvider.Models
+﻿namespace TelecommunicationProvider.Models.SqlServerModels
 {
     using System;
 
