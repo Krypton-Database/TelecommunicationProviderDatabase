@@ -31,13 +31,15 @@
                 return totalIncome;
             }
 
-        public void generateJson()
+        public string generateJson()
             {
                 var totalIncome = generateIncome();
                 var jsonPrototype = getJson(totalIncome);
                 var serializer = new JavaScriptSerializer();
 
-                var json = serializer.Serialize(jsonPrototype); //Will the real JSON please stand up, please stand up.
+                string serializedJson = serializer.Serialize(jsonPrototype); //Will the real JSON please stand up, please stand up.
+
+                return serializedJson;
             }
 
         public Dictionary<string, dynamic> getJson(decimal? totalIncome)
