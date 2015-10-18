@@ -19,18 +19,6 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<TelecommunicationDbContext, Configuration>());
 
             var db = new TelecommunicationDbContext();
-
-            var address = new Address()
-                           {
-                               Name = "Cvetna Gradina",
-                               City = "Sofiq",
-                               ZipCode = "1234",
-                               Country = "BUlgaria",
-                               Number = 4
-                           };
-
-            db.Adresses.Add(address);
-            db.SaveChanges();
             Console.WriteLine(db.Adresses.Count());
 
             ImportContractsFromXml(db);
@@ -45,6 +33,7 @@
             foreach (var contract in importedContractsFromXml)
             {
                 telecommunicationDbContext.Contracts.Add(contract);
+                telecommunicationDbContext.SaveChanges();
             }
 
             telecommunicationDbContext.SaveChanges();
