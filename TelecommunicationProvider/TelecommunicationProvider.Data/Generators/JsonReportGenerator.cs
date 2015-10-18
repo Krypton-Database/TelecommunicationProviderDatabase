@@ -5,20 +5,36 @@
     using System.Web.Script.Serialization;
     using TelecommunicationProvider.Models.SqlServerModels;
 
-    class JsonReportGenerator
+    public class JsonReportGenerator
         {
         private Package package = new Package();
 
         public JsonReportGenerator()
             {
                 this.Income = 0;
-                this.Id = package.Id;
-                this.Name = package.Name;
-                this.Price = package.Price;
-                this.Contracts = package.Contracts;
+                this.Id = this.package.Id;
+                this.Name = this.package.Name;
+                this.Price = this.package.Price;
+                this.Contracts = this.package.Contracts;
             }
 
-        public decimal? generateIncome()
+        public int Income { get; set; }
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public decimal? Price { get; set; }
+
+        public ICollection<Contract> Contracts { get; set; }
+
+        public static void WriteJson()
+            {
+            // TODO: Do that tommorrow (19/10/2015)
+            // TRY: File.WriteAllText(Environment.CurrentDirectory + @"\JSON.txt", json);
+            }
+
+        public decimal? GenerateIncome()
             {
                 var objectToSerialize = new JsonReportGenerator();
                 decimal? totalIncome = 0;
@@ -31,18 +47,18 @@
                 return totalIncome;
             }
 
-        public string generateJson()
+        public string GenerateJson()
             {
-                var totalIncome = generateIncome();
-                var jsonPrototype = getJson(totalIncome);
+                var totalIncome = this.GenerateIncome();
+                var jsonPrototype = this.GetJson(totalIncome);
                 var serializer = new JavaScriptSerializer();
 
-                string serializedJson = serializer.Serialize(jsonPrototype); //Will the real JSON please stand up, please stand up.
+                string serializedJson = serializer.Serialize(jsonPrototype); // Will the real JSON please stand up, please stand up.
 
                 return serializedJson;
             }
 
-        public Dictionary<string, dynamic> getJson(decimal? totalIncome)
+        public Dictionary<string, dynamic> GetJson(decimal? totalIncome)
             {
             var json = new Dictionary<string, dynamic>
                 {
@@ -53,15 +69,5 @@
                 };
             return json;
             }
-
-        public int Income { get; set; }
-
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public decimal? Price { get; set; }
-
-        public ICollection<Contract> Contracts { get; set; }
         }
     }
