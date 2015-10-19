@@ -7,18 +7,12 @@ namespace TelecommunicationProvider.MySqlDb.Models
 {
     using System;
 
-    public class ModelsMySql
+    public class MonthlyNumberOfContracts
     {
         public int Id { get; set; }
 
-        public string FirstName { get; set; }
+        public DateTime Date { get; set; }
 
-        public string LastName { get; set; }
-
-        public string Ssn { get; set; }
-
-        public string Type { get; set; }
-
-        public int AddressId { get; set; }
+        public int NumberOfContracts { get; set; }
     }
 }

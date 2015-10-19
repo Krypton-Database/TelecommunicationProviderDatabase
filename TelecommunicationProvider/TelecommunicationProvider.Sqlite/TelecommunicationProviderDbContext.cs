@@ -1,7 +1,6 @@
 ﻿namespace TelecommunicationProvider.Sqlite
 {
     using System.Data.Entity;
-    using System.Data.SQLite;
 
     public class TelecommunicationProviderDbContext : DbContext
     {

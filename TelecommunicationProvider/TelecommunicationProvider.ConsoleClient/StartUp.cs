@@ -10,6 +10,7 @@ namespace TelecommunicationProvider.ConsoleClient
     using System.Linq;
     using TelecommunicationProvider.ConsoleClient.DataManipulators;
     using TelecommunicationProvider.Data;
+    using Data.Exporters;
     using TelecommunicationProvider.Data.Generators;
     using TelecommunicationProvider.Data.Migrations;
     using TelecommunicationProvider.Models.SqlServerModels;
@@ -34,7 +35,7 @@ namespace TelecommunicationProvider.ConsoleClient
             var xmlManipulator = new XmlManipulator();
             var mongoManipulator = new MongoManipulator();
             var pdfManipulator = new PdfManipulator();
-           
+
             var address = new Address
                               {
                                   Name = "lalalla",
@@ -50,7 +51,11 @@ namespace TelecommunicationProvider.ConsoleClient
             Console.WriteLine("command /zipped excel files/ to import contracts from excel ");
             Console.WriteLine("command /xml export/ to export xml reports");
             Console.WriteLine("command /create pdf/ to export pdf reports");
+            Console.WriteLine("command /export json/ to export pdf reports");
+            Console.WriteLine("command /import mysql/ to export pdf reports");
             var command = string.Empty;
+
+
             while ((command = Console.ReadLine()) != "exit")
             {
                 switch (command)
@@ -99,6 +104,7 @@ namespace TelecommunicationProvider.ConsoleClient
                             pdfManipulator.CreatePdfReport(db, PdfDataFileName, date);
                             break;
                         }
+
                     case "export json":
                         {
                             var json = new JsonReportCorrect();
@@ -106,11 +112,31 @@ namespace TelecommunicationProvider.ConsoleClient
                             json.ExportContracts(listOfContracts, @"..\..\..\..\OutputData\JsonReports");
                             break;
                         }
+
+                    case "import mysql":
+                        {
+                            var sqlManipulator = new MySqlManipulator();
+                            sqlManipulator.ImportDataToMySql(db.Contracts.ToList());
+                            break;
+                        }
+
+                    case "export excel":
+                        {
+                            ComposeDataFromSQLiteAndMySqlAndExportToExcel();
+                            break;
+                        }
+
                     default:
                         Console.WriteLine("Invalid command");
                         break;
                 }
             }
+        }
+
+        private static void ComposeDataFromSQLiteAndMySqlAndExportToExcel()
+        {
+            ExcelExporter excelExporter = new ExcelExporter();
+            excelExporter.GenerateCompositeTelecommunicationReport();
         }
     }
 }

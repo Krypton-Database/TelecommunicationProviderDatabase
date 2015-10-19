@@ -1,5 +1,6 @@
 ﻿namespace TelecommunicationProvider.Data.Generators
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
 
@@ -11,6 +12,7 @@
     {
         public void ExportContracts(List<Contract> contracts, string directory)
         {
+            Console.WriteLine("Generating of json reports initialized.");
             string jsonReport;
             if (!Directory.Exists(directory))
             {
@@ -32,7 +34,7 @@
 
 
                 File.WriteAllText(directory + '/' + item.Id.ToString() + ".json", jsonReport);
-
+                Console.WriteLine("Generating of json reports completed!");
             }
         }
     }

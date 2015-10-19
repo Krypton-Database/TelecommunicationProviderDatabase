@@ -24,15 +24,13 @@ namespace TelecommunicationProvider.MySqlDb
         {
             List<MappingConfiguration> configurations = new List<MappingConfiguration>();
 
-            var mySqlMapping = new MappingConfiguration<ModelsMySql>();
+            var mySqlMapping = new MappingConfiguration<MonthlyNumberOfContracts>();
 
             mySqlMapping.MapType(report => new
             {
                 Id = report.Id,
-                FirstName = report.FirstName,
-                LastName = report.LastName,
-                Ssn = report.Ssn,
-                Type = report.Type
+                Date = report.Date,
+                NumberOfContracts = report.NumberOfContracts
             }).ToTable("MySql");
 
             mySqlMapping.HasProperty(c => c.Id).IsIdentity(KeyGenerator.Autoinc);
