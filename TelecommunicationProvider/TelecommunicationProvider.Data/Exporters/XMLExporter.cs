@@ -8,19 +8,26 @@ namespace TelecommunicationProvider.Data.Exporters
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;  
+    using System.Text;
     using System.Xml;
     using TelecommunicationProvider.Models.SqlServerModels;
 
     public class XmlExporter
     {
-        private const string OutputPath = "/../../../Reports/XMLReport.xml";
+        private const string OutputPath = "../../../../Data/Exports/Reports/";
+        private const string OutputFileName = "XMLReport.xml";
 
         public void GenerateXmlReport(TelecommunicationDbContext db)
         {
             Encoding encoding = Encoding.GetEncoding("windows-1251");
+            bool exists = System.IO.Directory.Exists(OutputPath);
 
-            using (XmlTextWriter writer = new XmlTextWriter(OutputPath, encoding))
+            if (!exists)
+            {
+                System.IO.Directory.CreateDirectory(OutputPath);
+            }
+
+            using (XmlTextWriter writer = new XmlTextWriter(OutputPath + OutputFileName, encoding))
             {
                 writer.Formatting = Formatting.Indented;
                 writer.IndentChar = '\t';
@@ -36,13 +43,16 @@ namespace TelecommunicationProvider.Data.Exporters
                 writer.WriteStartDocument();
                 writer.WriteStartElement("sales");
 
-                foreach (Report summary in summariesAll)
+                foreach (var summaryPack in summariesAll)
                 {
-                    DateTime reportDate = summary.ReportDate;
-                    var packageName = summary.PackName;
-                    var sum = summary.Sum;
-                    CreateSummary(writer, reportDate, packageName, sum);
-                    writer.WriteEndElement();
+                    foreach (var summary in summaryPack)
+                    {
+                        DateTime reportDate = summary.ReportDate;
+                        var packageName = summary.PackName;
+                        var sum = summary.Sum;
+                        CreateSummary(writer, reportDate, packageName, sum);
+                        writer.WriteEndElement();
+                    }
                 }
 
                 writer.WriteEndDocument();
