@@ -12,14 +12,14 @@
     {
         private const string WorksheetFileExtensionPattern = @".xls[x]?\b";
         private const string ContractsWorksheetFilePattern = @"\Contracts-\d{2}-\w{3}-\d{4}.xls[x]?\b";
-
         private const string InvalidFileNameMessage = @"Provided file name is either invalid or does not match
                                                     the naming convention for an xls/xlsx [{0}] data file.";
 
         public ICollection<Contract> ImportContractsDataFromDirectory(string directoryPath)
         {
             IEnumerable<string> filePaths = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
-            // .Where(p => Regex.IsMatch(p, ContractsWorksheetFilePattern));
+
+            //// .Where(p => Regex.IsMatch(p, ContractsWorksheetFilePattern));
 
             ICollection<Contract> importedContracts = new HashSet<Contract>();
 
@@ -36,10 +36,10 @@
 
         public ICollection<Contract> ImportContractsDataFromFile(string filePath)
         {
-            // if (!Regex.IsMatch(filePath, ContractsWorksheetFilePattern))
-            // {
-            //    throw new ArgumentException(string.Format(InvalidFileNameMessage, "Contracts"));
-            // }
+            //// if (!Regex.IsMatch(filePath, ContractsWorksheetFilePattern))
+            //// {
+            ////    throw new ArgumentException(string.Format(InvalidFileNameMessage, "Contracts"));
+            //// }
 
             OleDbConnection connection = new OleDbConnection();
 

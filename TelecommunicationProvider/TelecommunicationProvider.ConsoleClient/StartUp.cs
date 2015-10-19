@@ -24,17 +24,17 @@
             var db = new TelecommunicationDbContext();
             var databaseMongoDbContext = new TelecommunicationProviderMongoDbContext();
 
-            //var address = new Address()
-            //               {
-            //                   Name = "Cvetna Gradina",
-            //                   City = "Sofiq",
-            //                   ZipCode = "1234",
-            //                   Country = "BUlgaria",
-            //                   Number = 4
-            //               };
-
-            //db.Adresses.Add(address);
-            // db.SaveChanges();
+            //// var address = new Address()
+            ////                {
+            ////                    Name = "Cvetna Gradina",
+            ////                    City = "Sofiq",
+            ////                    ZipCode = "1234",
+            ////                    Country = "BUlgaria",
+            ////                    Number = 4
+            ////                };
+               
+            //// db.Adresses.Add(address);
+            ////  db.SaveChanges();
             Console.WriteLine(db.Adresses.Count());
 
             ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
