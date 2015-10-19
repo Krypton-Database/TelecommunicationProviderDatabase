@@ -16,7 +16,7 @@ namespace TelecommunicationProvider.MySqlDb
 
         public TelecommunicationProviderMySqlData()
         {
-            var password = MySqlPwdPrompt();
+            var password = this.MySqlPwdPrompt();
 
             this.context = new TelecommunicationProviderMySqlDbContext(string.Format(ConnectionString, password));
 
@@ -25,7 +25,7 @@ namespace TelecommunicationProvider.MySqlDb
 
         private void VerifyDatabase()
         {
-            var schemaHandler = context.GetSchemaHandler();
+            var schemaHandler = this.context.GetSchemaHandler();
             this.EnsureDB(schemaHandler);
         }
 

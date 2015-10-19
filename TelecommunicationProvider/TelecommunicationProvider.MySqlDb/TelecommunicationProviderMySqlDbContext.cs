@@ -10,12 +10,12 @@ namespace TelecommunicationProvider.MySqlDb
 
     public class TelecommunicationProviderMySqlDbContext : OpenAccessContext
     {
-        private static readonly BackendConfiguration backendConfig = GetBackEndConfig();
+        private static readonly BackendConfiguration BackendConfig = GetBackEndConfig();
 
-        private static readonly MetadataSource metaDataConfig = new ModelConfiguration();
+        private static readonly MetadataSource MetaDataConfig = new ModelConfiguration();
 
         public TelecommunicationProviderMySqlDbContext(string connectionString)
-            : base(connectionString, backendConfig, metaDataConfig)
+            : base(connectionString, BackendConfig, MetaDataConfig)
         {
         }
 
