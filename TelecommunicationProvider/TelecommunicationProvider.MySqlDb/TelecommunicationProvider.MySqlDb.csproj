@@ -87,7 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelConfiguration.cs" />
-    <Compile Include="Models\ModelsMySql.cs" />
+    <Compile Include="Models\MonthlyNumberOfContracts.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="TelecommunicationProviderMySqlData.cs" />

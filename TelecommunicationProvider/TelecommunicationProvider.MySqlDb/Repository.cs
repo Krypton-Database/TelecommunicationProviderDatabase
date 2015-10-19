@@ -17,7 +17,7 @@ namespace TelecommunicationProvider.MySqlDb
             this.context = context;
         }
 
-        public void Add(ModelsMySql model)
+        public void Add(MonthlyNumberOfContracts model)
         {
             this.context.Add(model);
         }
