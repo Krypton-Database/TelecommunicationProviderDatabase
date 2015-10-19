@@ -6,6 +6,7 @@
     using System.Linq;
     using TelecommunicationProvider.Data;
     using TelecommunicationProvider.Data.Importers;
+    using TelecommunicationProvider.Data.Exporters;
     using TelecommunicationProvider.Data.Migrations;
     using TelecommunicationProvider.Models.SqlServerModels;
     using TelecommunicationProvider.MongoDb;
@@ -41,6 +42,8 @@
             ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
             ImportDataFromMongo(db, databaseMongoDbContext);
             ImportDataFromZipedExcel(db, SampleContractsDataExcelFolderZipPathSource);
+
+            ExportReportsToXml(db);
         }
 
         private static void ImportContractsFromXml(TelecommunicationDbContext telecommunicationDbContext, string xmlDataPath)
@@ -126,6 +129,12 @@
             zipExtractor.Extract(sourcePath, destinationPath);
 
             ImportContractsFromExcelFilesInFolder(telecommunicationDbContext, destinationPath);
+        }
+
+        private static void ExportReportsToXml(TelecommunicationDbContext telecommunicationDbContext)
+        {
+            XMLExporter exp = new XMLExporter();
+            exp.GenerateXMLReport(telecommunicationDbContext);
         }
     }
 }
