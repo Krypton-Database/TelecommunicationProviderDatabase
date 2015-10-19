@@ -46,21 +46,66 @@ namespace TelecommunicationProvider.ConsoleClient
                                   Country = "Bulgaria",
                                   ZipCode = "1000"
                               };
-            db.Adresses.Add(address);
-            db.SaveChanges();
+            Console.WriteLine("command /create database/ to create database");
+            Console.WriteLine("command /xml import/ to import contracts from xml");
+            Console.WriteLine("command /excel import/ to import contracts from excel");
+            Console.WriteLine("command /mongo import/ to import users, addresses and packages from mongo");
+            Console.WriteLine("command /zipped excel files/ to import contracts from excel ");
+            Console.WriteLine("command /xml export/ to export xml reports");
+            Console.WriteLine("command /create pdf/ to export pdf reports");
+            var command = string.Empty;
+            while ((command = Console.ReadLine()) != "exit")
+            {
+                switch (command)
+                {
+                    case "create database":
+                        {
+                            db.Adresses.Add(address);
+                            db.SaveChanges();
+                            Console.WriteLine("Database created");
+                            break;
+                        }
+                    case "xml import":
+                        {
+                            xmlManipulator.ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
+                            break;
+                        }
+                    case "excel import":
+                        {
+                            excelManipulator.ImportContractsFromExcelFilesInFolder(
+                                db,
+                                SampleContractsDataExcelFolderPath);
+                            break;
+                        }
+                    case "mongo import":
+                        {
+                            mongoManipulator.ImportDataFromMongo(db, databaseMongoDbContext);
+                            break;
+                        }
 
-            //Run the program for first time with those methods commented, for initializing and adding some data in the database
-            //Run the program for second time with those method uncommented(xmlManipulator.ExportReportsToXml(db)->with this method commented(it is not working yet)))
+                    case "zipped excel files":
+                        {
+                            excelManipulator.ImportDataFromZipedExcel(db, SampleContractsDataExcelFolderZipPathSource);
+                            break;
+                        }
 
+                    case "xml export":
+                        {
+                            xmlManipulator.ExportReportsToXml(db);
+                            break;
+                        }
 
-            //xmlManipulator.ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
-            //excelManipulator.ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
-            //mongoManipulator.ImportDataFromMongo(db, databaseMongoDbContext);
-            excelManipulator.ImportDataFromZipedExcel(db, SampleContractsDataExcelFolderZipPathSource);
-            //xmlManipulator.ExportReportsToXml(db);
-            pdfManipulator.CreatePdfReport(db, PdfDataFolderPath, PdfDataFileName);
+                    case "create pdf":
+                        {
+                            pdfManipulator.CreatePdfReport(db, PdfDataFolderPath, PdfDataFileName);
+                            break;
+                        }
 
-
+                    default:
+                        Console.WriteLine("Invalid command");
+                        break;
+                }
+            }
         }
     }
 }

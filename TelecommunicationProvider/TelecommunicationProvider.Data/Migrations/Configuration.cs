@@ -16,14 +16,8 @@ namespace TelecommunicationProvider.Data.Migrations
         protected override void Seed(TelecommunicationDbContext context)
         {
             this.SeedAddresses(context);
-            //context.SaveChanges();
             this.SeedPackages(context);
-            //context.SaveChanges();
-            this.SeedUsers(context);
-            //context.SaveChanges();
             this.SeedTelephoneNumbers(context);
-           // context.SaveChanges();
-            //context.SaveChanges();
         }
 
         //private void SeedContracts(TelecommunicationDbContext context)
@@ -69,6 +63,11 @@ namespace TelecommunicationProvider.Data.Migrations
                                            {
                                             UserId = 3,
                                             Number = "00359864591326"
+                                           },
+                                           new TelephoneNumber
+                                           {
+                                            UserId = 3,
+                                            Number = "00359774591326"
                                            },
                                    };
             foreach (var phone in phones)
