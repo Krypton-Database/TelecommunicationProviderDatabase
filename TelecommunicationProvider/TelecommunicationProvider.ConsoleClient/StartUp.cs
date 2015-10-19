@@ -6,15 +6,10 @@
 namespace TelecommunicationProvider.ConsoleClient
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
-
     using TelecommunicationProvider.ConsoleClient.DataManipulators;
     using TelecommunicationProvider.Data;
-    using TelecommunicationProvider.Data.Exporters;
-    using TelecommunicationProvider.Data.Generators;
-    using TelecommunicationProvider.Data.Importers;
     using TelecommunicationProvider.Data.Migrations;
     using TelecommunicationProvider.Models.SqlServerModels;
     using TelecommunicationProvider.MongoDb;
@@ -24,7 +19,7 @@ namespace TelecommunicationProvider.ConsoleClient
         private const string SampleContractsDataXmlFilePath = @"..\..\..\..\InputData\Contracts-01-Oct-2015.xml";
         private const string SampleContractsDataExcelFolderPath = @"..\..\..\..\InputData\Contracts\";
         private const string SampleContractsDataExcelFolderZipPathSource = @"..\..\..\..\InputData\Contracts.zip";
-        private const string PdfDataFolderPath = @"..\..\..\..\OutputData\Pdf";
+        /// private const string PdfDataFolderPath = @"..\..\..\..\OutputData\Pdf";
         private const string PdfDataFileName = @"UsersReport.pdf";
 
 
@@ -97,7 +92,7 @@ namespace TelecommunicationProvider.ConsoleClient
 
                     case "create pdf":
                         {
-                            pdfManipulator.CreatePdfReport(db, PdfDataFolderPath, PdfDataFileName);
+                            pdfManipulator.CreatePdfReport(db, PdfDataFileName);
                             break;
                         }
 
