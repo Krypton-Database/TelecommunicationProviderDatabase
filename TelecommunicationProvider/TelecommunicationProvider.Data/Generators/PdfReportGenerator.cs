@@ -24,7 +24,7 @@ namespace TelecommunicationProvider.Data.Generators
             }
         }
 
-        public void CreateUserReport(IQueryable<User> usersdata, string fileName)
+        public void CreateUserReport(IQueryable<Contract> contract, string fileName, DateTime date)
         {
             using (var fs = new FileStream(Path.Combine(workingDir, fileName), FileMode.Create, FileAccess.Write))
             {
@@ -34,26 +34,30 @@ namespace TelecommunicationProvider.Data.Generators
                 PdfWriter.GetInstance(document, fs);
                 document.Open();
 
+                int year = date.Year;
+                int month = date.Month;
+                int day = date.Day;
 
-                var groups = usersdata.Select(a => new
+                var groups = contract.Select(x => new
                 {
-                    FirstName = a.FirstName,
-                    LastName = a.LastName,
-                    Address = a.Address,
-                })
-                .GroupBy(x => x.Address.City)
-                .ToList();
+                    FirstName = x.TelephoneNumber.User.FirstName,
+                    LastName = x.TelephoneNumber.User.LastName,
+                    City = x.TelephoneNumber.User.Address.City,
+                    StartDate = x.StartDate,
+                    EndDate = x.EndDate,
+                }).GroupBy(y => y.City).ToList();
 
-                var users = groups;
-                var userCount = users.Count;
+                var contractsAll = groups;
+                var contrCount = contractsAll.Count;
+                var userCount = 0;
 
-                for (int i = 0; i < userCount; i++)
+                for (int i = 0; i < contrCount; i++)
                 {
-                    var singleUser = users[i];
+                    var singleContract = contractsAll[i];
 
                     var table = new PdfPTable(5);
 
-                    var headerCell = new PdfPCell(new Phrase("City: " + singleUser.Key));
+                    var headerCell = new PdfPCell(new Phrase("City: " + singleContract.Key));
                     headerCell.Colspan = 5;
                     headerCell.BackgroundColor = new BaseColor(232, 232, 232);
                     headerCell.HorizontalAlignment = 1;
@@ -62,23 +66,24 @@ namespace TelecommunicationProvider.Data.Generators
                     table.AddCell("First Name");
                     table.AddCell("Last Name");
                     table.AddCell("City");
-                    table.AddCell("Country");
-                    table.AddCell("Zip Code");
+                    table.AddCell("Start Date");
+                    table.AddCell("End Date");
 
-                    foreach (var user in singleUser)
+                    foreach (var contr in singleContract)
                     {
-                        table.AddCell(user.FirstName);
-                        table.AddCell(user.LastName);
-                        table.AddCell(user.Address.City);
-                        table.AddCell(user.Address.Country);
-                        table.AddCell(user.Address.ZipCode);
+                        table.AddCell(contr.FirstName);
+                        table.AddCell(contr.LastName);
+                        table.AddCell(contr.City);
+                        table.AddCell(contr.StartDate.Year.ToString() + "-" + contr.StartDate.Month.ToString() + "-" + contr.StartDate.Day.ToString());
+                        table.AddCell(contr.EndDate.Year.ToString() + "-" + contr.EndDate.Month.ToString() + "-" + contr.EndDate.Day.ToString());
+                        userCount = userCount + 1;
                     }
 
                     document.Add(table);
                     document.Add(new Paragraph(new Phrase("\n")));
                 }
 
-                document.Add(new Paragraph(new Phrase("\n" + "Total User count: " + usersdata.Count())));
+                document.Add(new Paragraph(new Phrase("\n" + "Total User count: " + userCount)));
 
                 var footer = new Paragraph(new Phrase("User Report"));
                 footer.Alignment = 1;
