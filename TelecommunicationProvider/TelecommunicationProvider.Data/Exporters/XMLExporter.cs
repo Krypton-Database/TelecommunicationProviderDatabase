@@ -63,8 +63,13 @@ namespace TelecommunicationProvider.Data.Exporters
         private static void CreateSummary(XmlWriter writer, DateTime date, string name, decimal? sum)
         {
             writer.WriteStartElement("summary");
-            writer.WriteStartAttribute("date", date.ToString());
-            writer.WriteStartAttribute("total-sum", sum.ToString());
+
+            writer.WriteElementString("name", name);
+            writer.WriteElementString("date", date.ToString());   
+            writer.WriteElementString("total-sum", sum.ToString());
+            //writer.WriteStartAttribute("date", date.ToString());
+            //writer.WriteStartAttribute("total-sum", sum.ToString());
+
             writer.WriteEndElement();
         }
 
