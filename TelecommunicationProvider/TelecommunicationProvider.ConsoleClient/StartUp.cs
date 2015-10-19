@@ -10,6 +10,7 @@ namespace TelecommunicationProvider.ConsoleClient
     using System.Linq;
     using TelecommunicationProvider.ConsoleClient.DataManipulators;
     using TelecommunicationProvider.Data;
+    using TelecommunicationProvider.Data.Generators;
     using TelecommunicationProvider.Data.Migrations;
     using TelecommunicationProvider.Models.SqlServerModels;
     using TelecommunicationProvider.MongoDb;
