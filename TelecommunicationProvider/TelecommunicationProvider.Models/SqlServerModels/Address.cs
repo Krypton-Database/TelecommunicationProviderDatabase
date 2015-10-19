@@ -1,10 +1,11 @@
-﻿namespace TelecommunicationProvider.Models.SqlServerModels
-{
-    using System.Collections;
-    using System.Collections.Generic;
+﻿// <copyright  file="Address.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
 
-    using MongoDB.Bson;
-    using MongoDB.Bson.Serialization.Attributes;
+namespace TelecommunicationProvider.Models.SqlServerModels
+{
+    using System.Collections.Generic;
 
     public class Address
     {

@@ -1,4 +1,9 @@
-﻿namespace TelecommunicationProvider.Data.Importers
+﻿// <copyright  file="ExcelImporter.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
+
+namespace TelecommunicationProvider.Data.Importers
 {
     using System;
     using System.Collections.Generic;
@@ -6,22 +11,20 @@
     using System.Data;
     using System.Data.OleDb;
     using System.IO;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using TelecommunicationProvider.Models;
     using TelecommunicationProvider.Models.SqlServerModels;
 
     public class ExcelImporter
     {
         private const string WorksheetFileExtensionPattern = @".xls[x]?\b";
         private const string ContractsWorksheetFilePattern = @"\Contracts-\d{2}-\w{3}-\d{4}.xls[x]?\b";
-        private const string InvalidFileNameMessage = @"Provided file name is either invalid or does not match 
+        private const string InvalidFileNameMessage = @"Provided file name is either invalid or does not match
                                                     the naming convention for an xls/xlsx [{0}] data file.";
 
         public ICollection<Contract> ImportContractsDataFromDirectory(string directoryPath)
         {
             IEnumerable<string> filePaths = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
-                                    // .Where(p => Regex.IsMatch(p, ContractsWorksheetFilePattern));
+
+            //// .Where(p => Regex.IsMatch(p, ContractsWorksheetFilePattern));
 
             ICollection<Contract> importedContracts = new HashSet<Contract>();
 
@@ -38,10 +41,10 @@
 
         public ICollection<Contract> ImportContractsDataFromFile(string filePath)
         {
-            // if (!Regex.IsMatch(filePath, ContractsWorksheetFilePattern))
-            // {
-            //    throw new ArgumentException(string.Format(InvalidFileNameMessage, "Contracts"));
-            // }
+            //// if (!Regex.IsMatch(filePath, ContractsWorksheetFilePattern))
+            //// {
+            ////    throw new ArgumentException(string.Format(InvalidFileNameMessage, "Contracts"));
+            //// }
 
             OleDbConnection connection = new OleDbConnection();
 

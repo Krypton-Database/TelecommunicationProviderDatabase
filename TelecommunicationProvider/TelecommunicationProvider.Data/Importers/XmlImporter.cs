@@ -1,26 +1,29 @@
-﻿namespace TelecommunicationProvider.Data.Importers
+﻿// <copyright  file="XmlImporter.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
+
+namespace TelecommunicationProvider.Data.Importers
 {
     using System;
     using System.Collections.Generic;
-    using System.Text.RegularExpressions;
     using System.Xml;
-    using TelecommunicationProvider.Models;
     using TelecommunicationProvider.Models.SqlServerModels;
 
     public class XmlImporter
     {
         private const string XmlFileExtensionPattern = @".xml\b";
 
-       // private const string ContractsXmlFilePattern = @"*+\Contracts-\d{2}-\w{3}-\d{4}.xml\b";
+        //// private const string ContractsXmlFilePattern = @"*+\Contracts-\d{2}-\w{3}-\d{4}.xml\b";
 
         private const string InvalidFileNameMessage = "Provided file name is invalid";
 
         public ICollection<Contract> ImportContractsDataFromFile(string filePath)
         {
-            //if (!Regex.IsMatch(filePath, ContractsXmlFilePattern))
-            //{
-            //    throw new ArgumentException(string.Format(InvalidFileNameMessage));
-            //}
+            //// if (!Regex.IsMatch(filePath, ContractsXmlFilePattern))
+            //// {
+            ////     throw new ArgumentException(string.Format(InvalidFileNameMessage));
+            //// }
 
             ICollection<Contract> importedContracts = new HashSet<Contract>();
 

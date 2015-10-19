@@ -1,8 +1,13 @@
-﻿namespace TelecommunicationProvider.Data
+﻿// <copyright  file="RandomGenerator.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
+
+namespace TelecommunicationProvider.Data
 {
     using System;
 
-    public class RandomGenerator 
+    public class RandomGenerator
     {
         private const string Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -47,7 +52,7 @@
             Random gen = new Random();
 
             int range = (end - start).Days;
-            return start.AddDays(GetRandomNumber(0, range-1));
+            return start.AddDays(this.GetRandomNumber(0, range - 1));
         }
     }
 }

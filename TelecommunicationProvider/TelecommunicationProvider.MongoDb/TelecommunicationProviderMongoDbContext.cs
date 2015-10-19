@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright  file="TelecommunicationProviderMongoDbContext.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
 
 namespace TelecommunicationProvider.MongoDb
 {
-       using System.Collections.Generic;
+    using System.Collections.Generic;
     using MongoDB.Driver;
 
     public class TelecommunicationProviderMongoDbContext : ITelecommunicationProviderMongoDbContext
     {
-        
-        private const string MongoDataBaseHost ="mongodb://Krypton:123456@ds041154.mongolab.com:41154/telecommunicationprovider";
+        private const string MongoDataBaseHost = "mongodb://Krypton:123456@ds041154.mongolab.com:41154/telecommunicationprovider";
         private const string DatabaseName = "telecommunicationprovider";
 
         private readonly MongoDatabase database;

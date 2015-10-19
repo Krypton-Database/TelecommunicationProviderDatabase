@@ -1,12 +1,9 @@
 namespace TelecommunicationProvider.Data.Migrations
 {
-    using System;
-    using System.Reflection;
-    using System.Linq;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.Linq;
     using TelecommunicationProvider.Models.SqlServerModels;
-
 
     public sealed class Configuration : DbMigrationsConfiguration<TelecommunicationDbContext>
     {
@@ -28,7 +25,6 @@ namespace TelecommunicationProvider.Data.Migrations
             context.SaveChanges();
             this.SeedContracts(context);
             context.SaveChanges();
-
         }
 
         private void SeedContracts(TelecommunicationDbContext context)
@@ -47,7 +43,7 @@ namespace TelecommunicationProvider.Data.Migrations
                     PackageId = packageIds[rand.GetRandomNumber(0, numberIds.Count - 1)],
                     StartDate = randomDate,
                     EndDate = rand.GetRandomDate(randomDate)
-            };
+                };
 
                 context.Contracts.AddOrUpdate(contract);
             }
