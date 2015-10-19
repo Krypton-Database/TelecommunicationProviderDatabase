@@ -1,15 +1,15 @@
-﻿using SpreadsheetLight;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TelecommunicationProvider.MySqlDb;
-using TelecommunicationProvider.Sqlite;
-
-namespace TelecommunicationProvider.Data.Exporters
+﻿namespace TelecommunicationProvider.Data.Exporters
 {
+    using SpreadsheetLight;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using TelecommunicationProvider.MySqlDb;
+    using TelecommunicationProvider.Sqlite;
+
     public class ExcelExporter
     {
         private const string OutputPath = "../../../../OutputData/Excel/Reports/";

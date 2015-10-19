@@ -15,6 +15,7 @@ namespace TelecommunicationProvider.ConsoleClient
     using TelecommunicationProvider.Data.Migrations;
     using TelecommunicationProvider.Models.SqlServerModels;
     using TelecommunicationProvider.MongoDb;
+    using TelecommunicationProvider.Data.Exporters;
 
     public class Startup
     {

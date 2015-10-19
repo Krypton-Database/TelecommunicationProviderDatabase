@@ -71,12 +71,15 @@ namespace TelecommunicationProvider.Data.Generators
 
                     foreach (var contr in singleContract)
                     {
-                        table.AddCell(contr.FirstName);
-                        table.AddCell(contr.LastName);
-                        table.AddCell(contr.City);
-                        table.AddCell(contr.StartDate.Year.ToString() + "-" + contr.StartDate.Month.ToString() + "-" + contr.StartDate.Day.ToString());
-                        table.AddCell(contr.EndDate.Year.ToString() + "-" + contr.EndDate.Month.ToString() + "-" + contr.EndDate.Day.ToString());
-                        userCount = userCount + 1;
+                        if (contr.StartDate.Year == year && contr.StartDate.Month == month && contr.StartDate.Day == day)
+                        {
+                            table.AddCell(contr.FirstName);
+                            table.AddCell(contr.LastName);
+                            table.AddCell(contr.City);
+                            table.AddCell(contr.StartDate.Year.ToString() + "-" + contr.StartDate.Month.ToString() + "-" + contr.StartDate.Day.ToString());
+                            table.AddCell(contr.EndDate.Year.ToString() + "-" + contr.EndDate.Month.ToString() + "-" + contr.EndDate.Day.ToString());
+                            userCount = userCount + 1;
+                        }
                     }
 
                     document.Add(table);
