@@ -16,6 +16,10 @@ namespace TelecommunicationProvider.Data.Exporters
     {
         private const string OutputPath = "../../../../OutputData/XML/Reports/";
         private const string OutputFileName = "XMLReport.xml";
+        private const int YearOfFirstReport = 2009;
+        private const int YearOfSecondReport = 2012;
+        private const int YearOfThirdReport = 2015;
+
 
         public void GenerateXmlReport(TelecommunicationDbContext db)
         {
@@ -33,10 +37,11 @@ namespace TelecommunicationProvider.Data.Exporters
                 writer.IndentChar = '\t';
                 writer.Indentation = 1;
 
-                var now = DateTime.Now;
-                var summaryFromThisYear = this.GetDataFromDB(db, now);
-                var summaryFromBeforeFiveYears = this.GetDataFromDB(db, new DateTime(now.Year - 5, 01, 01));
-                var summaryFromBeforeEightYears = this.GetDataFromDB(db, new DateTime(now.Year - 8, 01, 01));
+                var packages = db.Packages.ToList();
+
+                var summaryFromThisYear = this.GetDataFromDB(packages, YearOfFirstReport);
+                var summaryFromBeforeFiveYears = this.GetDataFromDB(packages, YearOfSecondReport);
+                var summaryFromBeforeEightYears = this.GetDataFromDB(packages, YearOfThirdReport);
 
                 var summariesAll = summaryFromThisYear.Concat(summaryFromBeforeFiveYears).Concat(summaryFromBeforeEightYears).ToList().GroupBy(s => s.PackName);
 
@@ -45,14 +50,18 @@ namespace TelecommunicationProvider.Data.Exporters
 
                 foreach (var summaryPack in summariesAll)
                 {
+                    writer.WriteStartElement("sale");
+
+                    writer.WriteAttributeString("name", summaryPack.Key);
+
                     foreach (var summary in summaryPack)
                     {
-                        DateTime reportDate = summary.ReportDate;
-                        var packageName = summary.PackName;
+                        int reportDate = summary.ReportYear;
                         var sum = summary.Sum;
-                        CreateSummary(writer, reportDate, packageName, sum);
-                        
+                        CreateSummary(writer, reportDate, sum);
                     }
+
+                    writer.WriteEndElement();
                 }
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
@@ -60,32 +69,25 @@ namespace TelecommunicationProvider.Data.Exporters
             }
         }
 
-        private static void CreateSummary(XmlWriter writer, DateTime date, string name, decimal? sum)
+        private static void CreateSummary(XmlWriter writer, int date, decimal? sum)
         {
             writer.WriteStartElement("summary");
-
-            writer.WriteElementString("name", name);
-            writer.WriteElementString("date", date.ToString());   
-            writer.WriteElementString("total-sum", sum.ToString());
-            //writer.WriteStartAttribute("date", date.ToString());
-            //writer.WriteStartAttribute("total-sum", sum.ToString());
-
+            writer.WriteAttributeString("year", date.ToString());
+            writer.WriteAttributeString("total-sum", sum.ToString());
             writer.WriteEndElement();
         }
 
-        private IList<Report> GetDataFromDB(TelecommunicationDbContext db, DateTime reportDate)
+        private IList<Report> GetDataFromDB(IList<Package> packages, int year)
         {
-            var packages = db.Packages.ToList();
-
             IList<Report> summeries = new List<Report>();
 
-            int activeContracts;
+            decimal? annualIncome;
 
             foreach (Package package in packages)
             {
-                activeContracts = this.CheckActualContracts(package.Contracts, reportDate);
+                annualIncome = AnnualIncome(year, package.Contracts, package);
                 summeries.Add(
-                    new Report(reportDate, package.Name, activeContracts * package.Price));
+                    new Report(year, package.Name, annualIncome));
             }
 
             return summeries;
@@ -95,6 +97,21 @@ namespace TelecommunicationProvider.Data.Exporters
         {
             int result = contracts.Select(c => c.EndDate < reportDate).ToList().Count();
             return result;
+        }
+
+        private decimal? AnnualIncome(int year, ICollection<Contract> contracts, Package package)
+        {
+            decimal? annualIncome = 0;
+
+            int activeContracts;
+
+            for(var i = 1; i <= 12; i++)
+            {
+                activeContracts = CheckActualContracts(contracts, new DateTime(year, i, 28));
+                annualIncome += activeContracts * package.Price;
+            }
+
+            return annualIncome;
         }
     }
 }
