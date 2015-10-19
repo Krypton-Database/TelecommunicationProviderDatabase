@@ -7,12 +7,14 @@ namespace TelecommunicationProvider.Data.Generators
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Web.Script.Serialization;
     using TelecommunicationProvider.Models.SqlServerModels;
 
     public class JsonReportGenerator
     {
         private readonly Package package = new Package();
+        private const string OutputPath = "../../../../OutputData/JSON/Reports/";
 
         public JsonReportGenerator()
         {
@@ -33,10 +35,15 @@ namespace TelecommunicationProvider.Data.Generators
 
         public ICollection<Contract> Contracts { get; set; }
 
-        public static void WriteJson()
+        public static void ExportJson()
+            {
+                var jsonObject = new JsonReportGenerator();
+                jsonObject.WriteJson(jsonObject.GenerateJson(), jsonObject.Id);
+            }
+
+        public void WriteJson(string jsonAsAString, int id)
         {
-            // TODO: Do that tommorrow (19/10/2015)
-            // TRY: File.WriteAllText(Environment.CurrentDirectory + @"\JSON.txt", json);
+            File.WriteAllText(Environment.CurrentDirectory + OutputPath + id + ".json", jsonAsAString);
         }
 
         public decimal? GenerateIncome()
