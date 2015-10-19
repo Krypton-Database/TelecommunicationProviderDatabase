@@ -1,4 +1,9 @@
-﻿namespace TelecommunicationProvider.Data.Importers
+﻿// <copyright  file="XmlImporter.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
+
+namespace TelecommunicationProvider.Data.Importers
 {
     using System;
     using System.Collections.Generic;

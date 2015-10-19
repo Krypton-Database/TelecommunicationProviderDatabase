@@ -1,4 +1,9 @@
-﻿namespace TelecommunicationProvider.Models.SqlServerModels
+﻿// <copyright  file="Package.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
+
+namespace TelecommunicationProvider.Models.SqlServerModels
 {
     using System.Collections.Generic;
 

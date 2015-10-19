@@ -1,4 +1,9 @@
-﻿namespace TelecommunicationProvider.ConsoleClient
+﻿// <copyright  file="Startup.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
+
+namespace TelecommunicationProvider.ConsoleClient
 {
     using System;
     using System.Collections.Generic;

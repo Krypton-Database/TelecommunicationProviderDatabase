@@ -1,16 +1,14 @@
-﻿// <copyright  file="User.cs" company="Krypton">
+﻿// <copyright  file="ModelsMySql.cs" company="Krypton">
 // MIT License
 // </copyright>
 // <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
 
-namespace TelecommunicationProvider.Models.MongoDbModels
+namespace TelecommunicationProvider.MySqlDb.Models
 {
-    using MongoDB.Bson;
-    using MongoDB.Bson.Serialization.Attributes;
+    using System;
 
-    public class User
+    public class ModelsMySql
     {
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
         public string FirstName { get; set; }

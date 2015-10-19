@@ -1,4 +1,9 @@
-﻿namespace TelecommunicationProvider.Data.Generators
+﻿// <copyright  file="PdfReportGenerator.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
+
+namespace TelecommunicationProvider.Data.Generators
 {
     using System;
     using System.IO;

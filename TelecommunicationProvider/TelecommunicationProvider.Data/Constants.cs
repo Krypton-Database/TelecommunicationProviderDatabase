@@ -1,4 +1,9 @@
-﻿namespace TelecommunicationProvider.Data
+﻿// <copyright  file="Constants.cs" company="Krypton">
+// MIT License
+// </copyright>
+// <author>Aleksandra92, DragnevaPavlina, alexizvely, The.Bager, pepinho24, grukov</author>
+
+namespace TelecommunicationProvider.Data
 {
     using System.Collections.Generic;
 

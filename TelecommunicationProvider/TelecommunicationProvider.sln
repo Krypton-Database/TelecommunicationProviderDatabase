@@ -11,6 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelecommunicationProvider.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelecommunicationProvider.MongoDb", "TelecommunicationProvider.MongoDb\TelecommunicationProvider.MongoDb.csproj", "{CD815246-D277-4BFF-9D05-4D6F8A78F763}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E1B1BE18-4E72-4A82-B106-5D76105356EC}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelecommunicationProvider.MySqlDb", "TelecommunicationProvider.MySqlDb\TelecommunicationProvider.MySqlDb.csproj", "{4E73936D-7FAD-48A5-B647-3978E9CC914C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +42,10 @@ Global
 		{CD815246-D277-4BFF-9D05-4D6F8A78F763}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD815246-D277-4BFF-9D05-4D6F8A78F763}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD815246-D277-4BFF-9D05-4D6F8A78F763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E73936D-7FAD-48A5-B647-3978E9CC914C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E73936D-7FAD-48A5-B647-3978E9CC914C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E73936D-7FAD-48A5-B647-3978E9CC914C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E73936D-7FAD-48A5-B647-3978E9CC914C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
