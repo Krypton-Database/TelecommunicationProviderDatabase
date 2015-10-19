@@ -30,29 +30,17 @@ namespace TelecommunicationProvider.ConsoleClient
 
             var db = new TelecommunicationDbContext();
             var databaseMongoDbContext = new TelecommunicationProviderMongoDbContext();
-
-            //// var address = new Address()
-            ////                {
-            ////                    Name = "Cvetna Gradina",
-            ////                    City = "Sofiq",
-            ////                    ZipCode = "1234",
-            ////                    Country = "BUlgaria",
-            ////                    Number = 4
-            ////                };
-               
-            //// db.Adresses.Add(address);
-            ////  db.SaveChanges();
             Console.WriteLine(db.Adresses.Count());
 
-            ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
-            ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
-            ImportDataFromMongo(db, databaseMongoDbContext);
+            //ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
+           //ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
+           ImportDataFromMongo(db, databaseMongoDbContext);
             ImportDataFromZipedExcel(db, SampleContractsDataExcelFolderZipPathSource);
 
-            ExportReportsToXml(db);
+           // ExportReportsToXml(db);
 
-            var pdfReport = new PdfReportGenerator();
-            pdfReport.CreateUserReport(db.Users);
+           // var pdfReport = new PdfReportGenerator();
+           // pdfReport.CreateUserReport(db.Users);
         }
 
         private static void ImportContractsFromXml(TelecommunicationDbContext telecommunicationDbContext, string xmlDataPath)

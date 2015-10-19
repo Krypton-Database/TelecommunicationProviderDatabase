@@ -14,7 +14,7 @@ namespace TelecommunicationProvider.Data.Generators
 
     public class PdfReportGenerator
     {
-        private readonly string workingDir = ".../.../Reports/Pdf";
+        private readonly string workingDir = @"..\..\..\..\Data\Pdf";
 
         public PdfReportGenerator()
         {
