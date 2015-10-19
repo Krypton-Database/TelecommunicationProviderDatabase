@@ -86,8 +86,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataManipulators\ExcelManipulator.cs" />
+    <Compile Include="DataManipulators\MongoManipulator.cs" />
+    <Compile Include="DataManipulators\PdfManipulator.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataManipulators\XmlManipulator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

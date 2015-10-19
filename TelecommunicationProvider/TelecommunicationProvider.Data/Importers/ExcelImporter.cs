@@ -41,6 +41,7 @@ namespace TelecommunicationProvider.Data.Importers
 
         public ICollection<Contract> ImportContractsDataFromFile(string filePath)
         {
+            Console.WriteLine("Importing data from excel files");
             //// if (!Regex.IsMatch(filePath, ContractsWorksheetFilePattern))
             //// {
             ////    throw new ArgumentException(string.Format(InvalidFileNameMessage, "Contracts"));
@@ -96,7 +97,7 @@ namespace TelecommunicationProvider.Data.Importers
                         }
                     }
                 }
-
+                Console.WriteLine("Importing data from excel completed!");
                 return importedContracts;
             }
         }

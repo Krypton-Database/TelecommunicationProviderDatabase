@@ -9,6 +9,8 @@ namespace TelecommunicationProvider.ConsoleClient
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
+
+    using TelecommunicationProvider.ConsoleClient.DataManipulators;
     using TelecommunicationProvider.Data;
     using TelecommunicationProvider.Data.Exporters;
     using TelecommunicationProvider.Data.Generators;
@@ -19,119 +21,46 @@ namespace TelecommunicationProvider.ConsoleClient
 
     public class Startup
     {
-        private const string SampleContractsDataXmlFilePath = @"..\..\..\..\Data\Contracts-01-Oct-2015.xml";
-        private const string SampleContractsDataExcelFolderPath = @"..\..\..\..\Data\Contracts\";
-        private const string SampleContractsDataExcelFolderZipPathSource = @"..\..\..\..\Data\Contracts.zip";
-        private const string SampleContractsDataExcelFolderZipPathTempDestination = @"..\..\..\..\Data\UnZipContracts\";
+        private const string SampleContractsDataXmlFilePath = @"..\..\..\..\InputData\Contracts-01-Oct-2015.xml";
+        private const string SampleContractsDataExcelFolderPath = @"..\..\..\..\InputData\Contracts\";
+        private const string SampleContractsDataExcelFolderZipPathSource = @"..\..\..\..\InputData\Contracts.zip";
+        private const string PdfDataFolderPath = @"..\..\..\..\OutputData\Pdf";
+        private const string PdfDataFileName = @"UsersReport.pdf";
+
 
         public static void Main()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<TelecommunicationDbContext, Configuration>());
-
             var db = new TelecommunicationDbContext();
             var databaseMongoDbContext = new TelecommunicationProviderMongoDbContext();
-            Console.WriteLine(db.Adresses.Count());
 
-            ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
-           ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
-           //ImportDataFromMongo(db, databaseMongoDbContext);
-            ImportDataFromZipedExcel(db, SampleContractsDataExcelFolderZipPathSource);
+            var excelManipulator = new ExcelManipulator();
+            var xmlManipulator = new XmlManipulator();
+            var mongoManipulator = new MongoManipulator();
+            var pdfManipulator = new PdfManipulator();
+            var address = new Address
+                              {
+                                  Name = "lalalla",
+                                  Number = 23,
+                                  City = "Sofiq",
+                                  Country = "Bulgaria",
+                                  ZipCode = "1000"
+                              };
+            db.Adresses.Add(address);
+            db.SaveChanges();
 
-           // ExportReportsToXml(db);
+            //Run the program for first time with those methods commented, for initializing and adding some data in the database
+            //Run the program for second time with those method uncommented(xmlManipulator.ExportReportsToXml(db)->with this method commented(it is not working yet)))
 
-            var pdfReport = new PdfReportGenerator();
-            pdfReport.CreateUserReport(db.Users);
-        }
 
-        private static void ImportContractsFromXml(TelecommunicationDbContext telecommunicationDbContext, string xmlDataPath)
-        {
-            XmlImporter xmlDataImporter = new XmlImporter();
-            ICollection<Contract> importedContractsFromXml =
-            xmlDataImporter.ImportContractsDataFromFile(xmlDataPath);
-            foreach (var contract in importedContractsFromXml)
-            {
-                telecommunicationDbContext.Contracts.Add(contract);
-            }
+            xmlManipulator.ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
+            excelManipulator.ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
+            //mongoManipulator.ImportDataFromMongo(db, databaseMongoDbContext);
+            excelManipulator.ImportDataFromZipedExcel(db, SampleContractsDataExcelFolderZipPathSource);
+            //xmlManipulator.ExportReportsToXml(db);
+            pdfManipulator.CreatePdfReport(db, PdfDataFolderPath, PdfDataFileName);
 
-            telecommunicationDbContext.SaveChanges();
-        }
 
-        private static void ImportContractsFromExcelFilesInFolder(TelecommunicationDbContext telecommunicationDbContext, string excelFolderDataPath)
-        {
-            ExcelImporter excelDataImporter = new ExcelImporter();
-            ICollection<Contract> importedContractsFromExcel =
-            excelDataImporter.ImportContractsDataFromDirectory(excelFolderDataPath);
-            foreach (var contract in importedContractsFromExcel)
-            {
-                telecommunicationDbContext.Contracts.Add(contract);
-            }
-
-            telecommunicationDbContext.SaveChanges();
-        }
-
-        private static void ImportDataFromMongo(TelecommunicationDbContext telecommunicationDbContext, ITelecommunicationProviderMongoDbContext telecommunicationMongoDbContext)
-        {
-            var mongoData = new TelecommunicationProviderMongoDb(telecommunicationMongoDbContext);
-
-            var usersCollection = mongoData.User.FindAll();
-
-            var telephonesCollection = mongoData.TelephoneNumber.FindAll();
-
-            var addressCollection = mongoData.Address.FindAll();
-
-            foreach (var item in usersCollection)
-            {
-                var user = new User
-                               {
-                                   FirstName = item.FirstName,
-                                   LastName = item.LastName,
-                                   Ssn = item.Ssn,
-                                   Type = item.Type,
-                                   AddressId = item.AddressId
-                               };
-                telecommunicationDbContext.Users.Add(user);
-                telecommunicationDbContext.SaveChanges();
-            }
-
-            foreach (var item in telephonesCollection)
-            {
-                var phone = new TelephoneNumber
-                {
-                    Number = item.Number,
-                    UserId = item.UserId
-                };
-                telecommunicationDbContext.TelephoneNumbers.Add(phone);
-                telecommunicationDbContext.SaveChanges();
-            }
-
-            foreach (var item in addressCollection)
-            {
-                var address = new Address
-                {
-                    Name = item.Name,
-                    Number = item.Number,
-                    City = item.City,
-                    Country = item.Country,
-                    ZipCode = item.ZipCode
-                };
-                telecommunicationDbContext.Adresses.Add(address);
-                telecommunicationDbContext.SaveChanges();
-            }
-        }
-
-        private static void ImportDataFromZipedExcel(TelecommunicationDbContext telecommunicationDbContext, string sourcePath, string destinationPath = SampleContractsDataExcelFolderZipPathTempDestination)
-        {
-            ZipExtractor zipExtractor = new ZipExtractor();
-
-            zipExtractor.Extract(sourcePath, destinationPath);
-
-            ImportContractsFromExcelFilesInFolder(telecommunicationDbContext, destinationPath);
-        }
-
-        private static void ExportReportsToXml(TelecommunicationDbContext telecommunicationDbContext)
-        {
-            XmlExporter exp = new XmlExporter();
-            exp.GenerateXmlReport(telecommunicationDbContext);
         }
     }
 }

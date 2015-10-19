@@ -14,19 +14,15 @@ namespace TelecommunicationProvider.Data.Generators
 
     public class PdfReportGenerator
     {
-        private readonly string workingDir = @"..\..\..\..\Data\Pdf";
 
-        public PdfReportGenerator()
+        public void CreateUserReport(IQueryable<User> usersdata, string directory, string fileName)
         {
-            if (!Directory.Exists(this.workingDir))
+
+            if (!Directory.Exists(directory))
             {
-                Directory.CreateDirectory(this.workingDir);
+                Directory.CreateDirectory(directory);
             }
-        }
-
-        public void CreateUserReport(IQueryable<User> usersdata)
-        {
-            using (var fs = new FileStream(Path.Combine(this.workingDir, "UsersReport.pdf"), FileMode.Create, FileAccess.Write))
+            using (var fs = new FileStream(Path.Combine(directory, fileName), FileMode.Create, FileAccess.Write))
             {
                 Console.WriteLine("Generating of UsersReport.pdf initialized.");
 
