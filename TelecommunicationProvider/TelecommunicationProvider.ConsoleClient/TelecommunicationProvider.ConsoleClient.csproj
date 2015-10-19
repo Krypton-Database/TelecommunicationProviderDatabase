@@ -86,6 +86,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataManipulators\DataBaseCreator.cs" />
     <Compile Include="DataManipulators\ExcelManipulator.cs" />
     <Compile Include="DataManipulators\MongoManipulator.cs" />
     <Compile Include="DataManipulators\PdfManipulator.cs" />

@@ -62,8 +62,8 @@ namespace TelecommunicationProvider.ConsoleClient
                 {
                     case "create database":
                         {
-                            db.Adresses.Add(address);
-                            db.SaveChanges();
+                            var dataBase = new DataBaseCreator();
+                            dataBase.CreateDatabase(db);
                             Console.WriteLine("Database created");
                             break;
                         }
