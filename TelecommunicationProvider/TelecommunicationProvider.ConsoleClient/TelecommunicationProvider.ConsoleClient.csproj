@@ -89,6 +89,7 @@
     <Compile Include="DataManipulators\ExcelManipulator.cs" />
     <Compile Include="DataManipulators\MongoManipulator.cs" />
     <Compile Include="DataManipulators\PdfManipulator.cs" />
+    <Compile Include="DataManipulators\MySqlManipulator.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataManipulators\XmlManipulator.cs" />
@@ -110,6 +111,10 @@
     <ProjectReference Include="..\TelecommunicationProvider.MongoDb\TelecommunicationProvider.MongoDb.csproj">
       <Project>{cd815246-d277-4bff-9d05-4d6f8a78f763}</Project>
       <Name>TelecommunicationProvider.MongoDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TelecommunicationProvider.MySqlDb\TelecommunicationProvider.MySqlDb.csproj">
+      <Project>{4e73936d-7fad-48a5-b647-3978e9cc914c}</Project>
+      <Name>TelecommunicationProvider.MySqlDb</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
