@@ -7,7 +7,7 @@
 
     public class ExcelManipulator
     {
-        private const string SampleContractsDataExcelFolderZipPathTempDestination = @"..\..\..\..\Data\UnZipContracts\";
+        private const string SampleContractsDataExcelFolderZipPathTempDestination = @"..\..\..\..\InputData\UnZipContracts\";
 
         public void ImportContractsFromExcelFilesInFolder(TelecommunicationDbContext telecommunicationDbContext, string excelFolderDataPath)
         {

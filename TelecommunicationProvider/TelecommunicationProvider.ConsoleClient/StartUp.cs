@@ -53,8 +53,8 @@ namespace TelecommunicationProvider.ConsoleClient
             //Run the program for second time with those method uncommented(xmlManipulator.ExportReportsToXml(db)->with this method commented(it is not working yet)))
 
 
-            xmlManipulator.ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
-            excelManipulator.ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
+            //xmlManipulator.ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
+            //excelManipulator.ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
             //mongoManipulator.ImportDataFromMongo(db, databaseMongoDbContext);
             excelManipulator.ImportDataFromZipedExcel(db, SampleContractsDataExcelFolderZipPathSource);
             //xmlManipulator.ExportReportsToXml(db);

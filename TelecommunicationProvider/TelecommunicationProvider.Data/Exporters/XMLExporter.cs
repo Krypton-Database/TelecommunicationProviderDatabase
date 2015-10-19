@@ -14,7 +14,7 @@ namespace TelecommunicationProvider.Data.Exporters
 
     public class XmlExporter
     {
-        private const string OutputPath = "../../../../Data/Exports/Reports/";
+        private const string OutputPath = "../../../../OutputData/XML/Reports/";
         private const string OutputFileName = "XMLReport.xml";
 
         public void GenerateXmlReport(TelecommunicationDbContext db)
