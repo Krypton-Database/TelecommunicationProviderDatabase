@@ -1,31 +1,30 @@
 ﻿namespace TelecommunicationProvider.Data.Exporters
 {
     using System;
-    using System.Xml;
-    using System.Linq;
-    using System.Text;
     using System.Collections.Generic;
-
-    using TelecommunicationProvider.Models;
+    using System.Linq;
+    using System.Text;  
+    using System.Xml;
+    using TelecommunicationProvider.Models.SqlServerModels;
 
     public class XMLExporter
     {
-        private const string outputPath = "/../../../Reports/XMLReport.xml";
+        private const string OutputPath = "/../../../Reports/XMLReport.xml";
 
         public void GenerateXMLReport(TelecommunicationDbContext db)
         {
             Encoding encoding = Encoding.GetEncoding("windows-1251");
 
-            using (XmlTextWriter writer = new XmlTextWriter(outputPath, encoding))
+            using (XmlTextWriter writer = new XmlTextWriter(OutputPath, encoding))
             {
                 writer.Formatting = Formatting.Indented;
                 writer.IndentChar = '\t';
                 writer.Indentation = 1;
 
                 var now = DateTime.Now;
-                var summaryFromThisYear = GetDataFromDB(db, now);
-                var summaryFromBeforeFiveYears = GetDataFromDB(db, new DateTime(now.Year - 5, 01, 01));
-                var summaryFromBeforeEightYears = GetDataFromDB(db, new DateTime(now.Year - 8, 01, 01));
+                var summaryFromThisYear = this.GetDataFromDB(db, now);
+                var summaryFromBeforeFiveYears = this.GetDataFromDB(db, new DateTime(now.Year - 5, 01, 01));
+                var summaryFromBeforeEightYears = this.GetDataFromDB(db, new DateTime(now.Year - 8, 01, 01));
 
                 var summariesAll = summaryFromThisYear.Concat(summaryFromBeforeFiveYears).Concat(summaryFromBeforeEightYears).ToList().GroupBy(s => s.PackName);
 
@@ -40,6 +39,7 @@
                     CreateSummary(writer, reportDate, packageName, sum);
                     writer.WriteEndElement();
                 }
+
                 writer.WriteEndDocument();
                 Console.WriteLine("XML file is ready!");
             }
@@ -61,12 +61,11 @@
 
             int activeContracts;
 
-            foreach(Package package in packages)
+            foreach (Package package in packages)
             {
-                activeContracts = CheckActualContracts(package.Contracts, reportDate);
+                activeContracts = this.CheckActualContracts(package.Contracts, reportDate);
                 summeries.Add(
-                    new Report(reportDate, package.Name, activeContracts * package.Price)
-                );
+                    new Report(reportDate, package.Name, activeContracts * package.Price));
             }
 
             return summeries;
@@ -77,6 +76,5 @@
             int result = contracts.Select(c => c.EndDate < reportDate).ToList().Count();
             return result;
         }
-
     }
 }

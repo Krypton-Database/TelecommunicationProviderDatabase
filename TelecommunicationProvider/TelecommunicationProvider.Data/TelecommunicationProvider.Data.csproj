@@ -67,6 +67,8 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Exporters\Report.cs" />
     <Compile Include="Exporters\XMLExporter.cs" />
+    <Compile Include="Generators\JsonReportGenerator.cs" />
+    <Compile Include="Generators\PdfReportGenerator.cs" />
     <Compile Include="Importers\ExcelImporter.cs" />
     <Compile Include="Importers\XmlImporter.cs" />
     <Compile Include="Importers\ZipExtractor.cs" />
@@ -88,9 +90,7 @@
   <ItemGroup>
     <Content Include="Ionic.Zip.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Generators\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

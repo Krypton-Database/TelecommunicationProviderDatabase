@@ -1,6 +1,7 @@
 ﻿namespace TelecommunicationProvider.Data.Exporters
 {
     using System;
+
     internal class Report
     {
         internal Report(DateTime date, string name, decimal? sum)
