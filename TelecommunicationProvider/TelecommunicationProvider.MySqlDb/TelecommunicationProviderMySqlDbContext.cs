@@ -5,6 +5,8 @@
 
 namespace TelecommunicationProvider.MySqlDb
 {
+    using Models;
+    using System.Data.Entity;
     using Telerik.OpenAccess;
     using Telerik.OpenAccess.Metadata;
 
@@ -28,5 +30,7 @@ namespace TelecommunicationProvider.MySqlDb
 
             return config;
         }
+
+       // public DbSet<MonthlyNumberOfContracts> MonthlyNumberOfContracts { get; set; }
     }
 }

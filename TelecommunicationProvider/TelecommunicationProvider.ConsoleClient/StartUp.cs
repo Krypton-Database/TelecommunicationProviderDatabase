@@ -10,6 +10,7 @@ namespace TelecommunicationProvider.ConsoleClient
     using System.Linq;
     using TelecommunicationProvider.ConsoleClient.DataManipulators;
     using TelecommunicationProvider.Data;
+    using Data.Exporters;
     using TelecommunicationProvider.Data.Generators;
     using TelecommunicationProvider.Data.Migrations;
     using TelecommunicationProvider.Models.SqlServerModels;
@@ -117,11 +118,23 @@ namespace TelecommunicationProvider.ConsoleClient
                             break;
                         }
 
+                    case "export excel":
+                        {
+                            ComposeDataFromSQLiteAndMySqlAndExportToExcel();
+                            break;
+                        }
+
                     default:
                         Console.WriteLine("Invalid command");
                         break;
                 }
             }
+        }
+
+        private static void ComposeDataFromSQLiteAndMySqlAndExportToExcel()
+        {
+            ExcelExporter excelExporter = new ExcelExporter();
+            excelExporter.GenerateCompositeTelecommunicationReport();
         }
     }
 }

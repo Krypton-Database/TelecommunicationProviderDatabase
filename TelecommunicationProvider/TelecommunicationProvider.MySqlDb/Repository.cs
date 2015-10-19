@@ -22,6 +22,11 @@ namespace TelecommunicationProvider.MySqlDb
             this.context.Add(model);
         }
 
+        public IQueryable<MonthlyNumberOfContracts> All()
+        {
+            return this.context.GetAll<MonthlyNumberOfContracts>();
+        }
+
         public void SaveChanges()
         {
             this.context.SaveChanges();
