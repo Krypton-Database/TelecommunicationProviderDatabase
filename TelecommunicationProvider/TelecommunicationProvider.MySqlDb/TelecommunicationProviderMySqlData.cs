@@ -12,16 +12,18 @@ namespace TelecommunicationProvider.MySqlDb
     {
         private const string ConnectionString = "server=localhost;database=TelecommunicationProviderDb;uid=root;pwd={0};";
 
-        private readonly TelecommunicationProviderMySqlDbContext context;
+        public readonly TelecommunicationProviderMySqlDbContext context;
+
 
         public TelecommunicationProviderMySqlData()
         {
             var password = this.MySqlPwdPrompt();
-
             this.context = new TelecommunicationProviderMySqlDbContext(string.Format(ConnectionString, password));
-
+            this.ModelsMySqlRepository = new Repository(this.context);
             this.VerifyDatabase();
         }
+
+        public Repository ModelsMySqlRepository { get; set; }
 
         private void VerifyDatabase()
         {

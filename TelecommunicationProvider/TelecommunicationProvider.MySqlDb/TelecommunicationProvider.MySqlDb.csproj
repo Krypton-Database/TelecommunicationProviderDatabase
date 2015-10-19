@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4E73936D-7FAD-48A5-B647-3978E9CC914C}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TelecommunicationProvider.MySqlDb</RootNamespace>
     <AssemblyName>TelecommunicationProvider.MySqlDb</AssemblyName>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -85,6 +88,8 @@
   <ItemGroup>
     <Compile Include="ModelConfiguration.cs" />
     <Compile Include="Models\ModelsMySql.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="TelecommunicationProviderMySqlData.cs" />
     <Compile Include="TelecommunicationProviderMySqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

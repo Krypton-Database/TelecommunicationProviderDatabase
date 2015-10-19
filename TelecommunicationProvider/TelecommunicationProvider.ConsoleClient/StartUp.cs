@@ -33,6 +33,7 @@ namespace TelecommunicationProvider.ConsoleClient
             var xmlManipulator = new XmlManipulator();
             var mongoManipulator = new MongoManipulator();
             var pdfManipulator = new PdfManipulator();
+           
             var address = new Address
                               {
                                   Name = "lalalla",
@@ -95,7 +96,13 @@ namespace TelecommunicationProvider.ConsoleClient
                             pdfManipulator.CreatePdfReport(db, PdfDataFileName);
                             break;
                         }
-
+                    case "export json":
+                        {
+                            var json = new JsonReportCorrect();
+                            var listOfContracts = db.Contracts.ToList();
+                            json.ExportContracts(listOfContracts, @"..\..\..\..\OutputData\JsonReports");
+                            break;
+                        }
                     default:
                         Console.WriteLine("Invalid command");
                         break;

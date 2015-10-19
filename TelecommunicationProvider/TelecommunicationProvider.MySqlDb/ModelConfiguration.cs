@@ -7,6 +7,8 @@ namespace TelecommunicationProvider.MySqlDb
 {
     using System.Collections.Generic;
     using Models;
+
+    using Telerik.OpenAccess.Metadata;
     using Telerik.OpenAccess.Metadata.Fluent;
 
     /// <summary>
@@ -30,11 +32,10 @@ namespace TelecommunicationProvider.MySqlDb
                 FirstName = report.FirstName,
                 LastName = report.LastName,
                 Ssn = report.Ssn,
-                AddressId = report.AddressId,
-                Type = report.Type,
+                Type = report.Type
             }).ToTable("MySql");
 
-            mySqlMapping.HasProperty(c => c.Id).IsIdentity();
+            mySqlMapping.HasProperty(c => c.Id).IsIdentity(KeyGenerator.Autoinc);
 
             configurations.Add(mySqlMapping);
 

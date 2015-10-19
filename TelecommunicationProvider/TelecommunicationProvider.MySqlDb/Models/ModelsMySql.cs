@@ -9,7 +9,7 @@ namespace TelecommunicationProvider.MySqlDb.Models
 
     public class ModelsMySql
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string FirstName { get; set; }
 
