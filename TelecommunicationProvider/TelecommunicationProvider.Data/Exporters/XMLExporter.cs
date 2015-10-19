@@ -7,11 +7,11 @@
     using System.Xml;
     using TelecommunicationProvider.Models.SqlServerModels;
 
-    public class XMLExporter
+    public class XmlExporter
     {
         private const string OutputPath = "/../../../Reports/XMLReport.xml";
 
-        public void GenerateXMLReport(TelecommunicationDbContext db)
+        public void GenerateXmlReport(TelecommunicationDbContext db)
         {
             Encoding encoding = Encoding.GetEncoding("windows-1251");
 

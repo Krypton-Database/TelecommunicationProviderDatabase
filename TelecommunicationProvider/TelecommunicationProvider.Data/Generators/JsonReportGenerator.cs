@@ -7,7 +7,7 @@
 
     public class JsonReportGenerator
     {
-        private Package package = new Package();
+        private readonly Package package = new Package();
 
         public JsonReportGenerator()
         {

@@ -6,6 +6,7 @@
     using System.Linq;
     using TelecommunicationProvider.Data;
     using TelecommunicationProvider.Data.Exporters;
+    using TelecommunicationProvider.Data.Generators;
     using TelecommunicationProvider.Data.Importers;
     using TelecommunicationProvider.Data.Migrations;
     using TelecommunicationProvider.Models.SqlServerModels;
@@ -44,6 +45,9 @@
             ImportDataFromZipedExcel(db, SampleContractsDataExcelFolderZipPathSource);
 
             ExportReportsToXml(db);
+
+            var pdfReport = new PdfReportGenerator();
+            pdfReport.CreateUserReport(db.Users);
         }
 
         private static void ImportContractsFromXml(TelecommunicationDbContext telecommunicationDbContext, string xmlDataPath)
@@ -133,8 +137,8 @@
 
         private static void ExportReportsToXml(TelecommunicationDbContext telecommunicationDbContext)
         {
-            XMLExporter exp = new XMLExporter();
-            exp.GenerateXMLReport(telecommunicationDbContext);
+            XmlExporter exp = new XmlExporter();
+            exp.GenerateXmlReport(telecommunicationDbContext);
         }
     }
 }
