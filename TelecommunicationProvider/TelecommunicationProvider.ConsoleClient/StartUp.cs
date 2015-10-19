@@ -32,15 +32,15 @@ namespace TelecommunicationProvider.ConsoleClient
             var databaseMongoDbContext = new TelecommunicationProviderMongoDbContext();
             Console.WriteLine(db.Adresses.Count());
 
-            //ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
-           //ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
-           ImportDataFromMongo(db, databaseMongoDbContext);
+            ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
+           ImportContractsFromExcelFilesInFolder(db, SampleContractsDataExcelFolderPath);
+           //ImportDataFromMongo(db, databaseMongoDbContext);
             ImportDataFromZipedExcel(db, SampleContractsDataExcelFolderZipPathSource);
 
            // ExportReportsToXml(db);
 
-           // var pdfReport = new PdfReportGenerator();
-           // pdfReport.CreateUserReport(db.Users);
+            var pdfReport = new PdfReportGenerator();
+            pdfReport.CreateUserReport(db.Users);
         }
 
         private static void ImportContractsFromXml(TelecommunicationDbContext telecommunicationDbContext, string xmlDataPath)
