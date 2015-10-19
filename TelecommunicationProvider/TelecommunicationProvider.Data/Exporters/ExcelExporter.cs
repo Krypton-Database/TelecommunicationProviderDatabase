@@ -1,15 +1,17 @@
-﻿using SpreadsheetLight;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TelecommunicationProvider.MySqlDb;
-using TelecommunicationProvider.Sqlite;
-
-namespace TelecommunicationProvider.Data.Exporters
+﻿namespace TelecommunicationProvider.Data.Exporters
 {
+    using SpreadsheetLight;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using TelecommunicationProvider.MySqlDb;
+    using TelecommunicationProvider.Sqlite;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Spreadsheet;
+
     public class ExcelExporter
     {
         private const string OutputPath = "../../../../OutputData/Excel/Reports/";
@@ -36,11 +38,11 @@ namespace TelecommunicationProvider.Data.Exporters
                                        select
                                        new
                                        {
-                                               // MySqlData.Id,
-                                               MySqlData.NumberOfContracts,
+                                           // MySqlData.Id,
+                                           MySqlData.NumberOfContracts,
                                            MySqlData.Date,
-                                               // sqliteData.Id,
-                                               sqliteData.NumberOfProviders,
+                                           // sqliteData.Id,
+                                           sqliteData.NumberOfProviders,
                                            sqliteData.UserSsn
                                        };
 

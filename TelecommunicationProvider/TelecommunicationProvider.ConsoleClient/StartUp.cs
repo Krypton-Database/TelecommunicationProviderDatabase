@@ -53,6 +53,7 @@ namespace TelecommunicationProvider.ConsoleClient
             Console.WriteLine("command /create pdf/ to export pdf reports");
             Console.WriteLine("command /export json/ to export pdf reports");
             Console.WriteLine("command /import mysql/ to export pdf reports");
+            Console.WriteLine("command /export excel/ to export excel reports");
             var command = string.Empty;
 
 
