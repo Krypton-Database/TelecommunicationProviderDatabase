@@ -51,10 +51,10 @@ namespace TelecommunicationProvider.Data.Exporters
                         var packageName = summary.PackName;
                         var sum = summary.Sum;
                         CreateSummary(writer, reportDate, packageName, sum);
-                        writer.WriteEndElement();
+                        
                     }
                 }
-
+                writer.WriteEndElement();
                 writer.WriteEndDocument();
                 Console.WriteLine("XML file is ready!");
             }
