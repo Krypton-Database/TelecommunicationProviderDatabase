@@ -7,12 +7,16 @@
     {
         public static void Main()
         {
-            var db = new UserContext();
-
-            db.User.Add(new User { PhoneManufacturer = "Sony", PhoneModel = "Xperia Z" });
+            var db = new TelecommunicationProviderDbContext();
+            var differentUsersProvidersNum = new DifferentUserProviders
+                                                 {
+                                                     NumberOfProviders = 4,
+                                                     UserSsn = "123467891236"
+                                                 };
+            db.DifferentUserProviders.Add(differentUsersProvidersNum);
             db.SaveChanges();
 
-            Console.WriteLine(db.User.Count());
+            Console.WriteLine(db.DifferentUserProviders.Count());
         }
     }
 }

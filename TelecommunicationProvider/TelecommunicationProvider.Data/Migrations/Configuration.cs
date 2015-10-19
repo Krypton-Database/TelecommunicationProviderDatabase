@@ -16,33 +16,10 @@ namespace TelecommunicationProvider.Data.Migrations
         protected override void Seed(TelecommunicationDbContext context)
         {
             this.SeedAddresses(context);
+            this.SeedUsers(context);
             this.SeedPackages(context);
             this.SeedTelephoneNumbers(context);
         }
-
-        //private void SeedContracts(TelecommunicationDbContext context)
-        //{
-        //    var rand = RandomGenerator.Instance;
-        //    var contracts = new HashSet<Contract>();
-        //    var packageIds = context.Packages.Select(p => p.Id).ToList();
-        //    var numberIds = context.TelephoneNumbers.Select(t => t.Id).ToList();
-        //    var randomDate = rand.GetRandomDate();
-
-        //    for (int i = 0; i < 100; i++)
-        //    {
-        //        var contract = new Contract
-        //        {
-        //            TelephoneNumberId = numberIds[rand.GetRandomNumber(0, numberIds.Count - 1)],
-        //            PackageId = packageIds[rand.GetRandomNumber(0, numberIds.Count - 1)],
-        //            StartDate = randomDate,
-        //            EndDate = rand.GetRandomDate(randomDate)
-        //        };
-
-        //        context.Contracts.AddOrUpdate(contract);
-        //    }
-
-        //    context.SaveChanges();
-        //}
 
         private void SeedTelephoneNumbers(TelecommunicationDbContext context)
         {
@@ -74,20 +51,7 @@ namespace TelecommunicationProvider.Data.Migrations
             {
                 context.TelephoneNumbers.AddOrUpdate(phone);
             }
-            //var rand = RandomGenerator.Instance;
-            //var nums = new HashSet<TelephoneNumber>();
-            //var userIds = context.Users.Select(u => u.Id).ToList();
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    var num = new TelephoneNumber
-            //    {
-            //        UserId = userIds[rand.GetRandomNumber(0, userIds.Count - 1)],
-            //        Number = "+359" + rand.GetRandomNumber(100000, 999999)
-            //    };
-
-            //    context.TelephoneNumbers.AddOrUpdate(num);
-            //}
+          
 
            context.SaveChanges();
         }
@@ -125,24 +89,7 @@ namespace TelecommunicationProvider.Data.Migrations
             {
                 context.Users.AddOrUpdate(user);
             }
-            //var rand = RandomGenerator.Instance;
-            //var users = new HashSet<User>();
-            //var addressIds = context.Adresses.Select(a => a.Id).ToList();
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    var user = new User
-            //    {
-            //        AddressId = addressIds[rand.GetRandomNumber(0, addressIds.Count - 1)],
-            //        FirstName = "User first name " + rand.GetRandomString(rand.GetRandomNumber(2, 15)),
-            //        LastName = "User last name " + rand.GetRandomString(rand.GetRandomNumber(2, 15)),
-            //        Ssn = rand.GetRandomString(10),
-            //        Type = rand.GetRandomString(rand.GetRandomNumber(2, 10))
-            //    };
-
-            //    context.Users.AddOrUpdate(user);
-            //}
-
+            
             context.SaveChanges();
         }
 
