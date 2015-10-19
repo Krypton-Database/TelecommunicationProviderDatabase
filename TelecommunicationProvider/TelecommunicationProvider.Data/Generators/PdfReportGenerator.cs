@@ -45,10 +45,10 @@ namespace TelecommunicationProvider.Data.Generators
                 {
                     var singleUser = users[i];
 
-                    var table = new PdfPTable(6);
+                    var table = new PdfPTable(5);
 
                     var headerCell = new PdfPCell(new Phrase("User N: " + singleUser.Key));
-                    headerCell.Colspan = 6;
+                    headerCell.Colspan = 5;
                     headerCell.BackgroundColor = new BaseColor(232, 232, 232);
                     headerCell.HorizontalAlignment = 1;
                     table.AddCell(headerCell);
