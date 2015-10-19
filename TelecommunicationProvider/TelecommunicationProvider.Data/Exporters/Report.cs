@@ -9,14 +9,14 @@ namespace TelecommunicationProvider.Data.Exporters
 
     internal class Report
     {
-        internal Report(DateTime date, string name, decimal? sum)
+        internal Report(int year, string name, decimal? sum)
         {
-            this.ReportDate = date;
+            this.ReportYear = year;
             this.PackName = name;
             this.Sum = sum;
         }
 
-        internal DateTime ReportDate { get; set; }
+        internal int ReportYear { get; set; }
 
         internal string PackName { get; set; }
 
