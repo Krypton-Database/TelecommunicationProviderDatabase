@@ -5,10 +5,10 @@
 
     public class PdfManipulator
     {
-        public void CreatePdfReport(TelecommunicationDbContext telecommunicationDbContext, string directory, string fileName)
+        public void CreatePdfReport(TelecommunicationDbContext telecommunicationDbContext, string fileName)
         {
             var pdfReport = new PdfReportGenerator();
-            pdfReport.CreateUserReport(telecommunicationDbContext.Users, directory, fileName);
+            pdfReport.CreateUserReport(telecommunicationDbContext.Users, fileName);
         }
     }
 }

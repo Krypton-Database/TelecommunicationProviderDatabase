@@ -14,15 +14,19 @@ namespace TelecommunicationProvider.Data.Generators
 
     public class PdfReportGenerator
     {
+        private string workingDir = @"..\..\..\..\OutputData\Pdf";
 
-        public void CreateUserReport(IQueryable<User> usersdata, string directory, string fileName)
+        public PdfReportGenerator()
         {
-
-            if (!Directory.Exists(directory))
+            if (!Directory.Exists(workingDir))
             {
-                Directory.CreateDirectory(directory);
+                Directory.CreateDirectory(workingDir);
             }
-            using (var fs = new FileStream(Path.Combine(directory, fileName), FileMode.Create, FileAccess.Write))
+        }
+
+        public void CreateUserReport(IQueryable<User> usersdata, string fileName)
+        {
+            using (var fs = new FileStream(Path.Combine(workingDir, fileName), FileMode.Create, FileAccess.Write))
             {
                 Console.WriteLine("Generating of UsersReport.pdf initialized.");
 
@@ -30,24 +34,26 @@ namespace TelecommunicationProvider.Data.Generators
                 PdfWriter.GetInstance(document, fs);
                 document.Open();
 
+
                 var groups = usersdata.Select(a => new
                 {
                     FirstName = a.FirstName,
                     LastName = a.LastName,
                     Address = a.Address,
                 })
-                .GroupBy(x => x.FirstName)
+                .GroupBy(x => x.Address.City)
                 .ToList();
 
                 var users = groups;
+                var userCount = users.Count;
 
-                for (int i = 0; i < users.Count; i++)
+                for (int i = 0; i < userCount; i++)
                 {
                     var singleUser = users[i];
 
                     var table = new PdfPTable(5);
 
-                    var headerCell = new PdfPCell(new Phrase("User N: " + singleUser.Key));
+                    var headerCell = new PdfPCell(new Phrase("City: " + singleUser.Key));
                     headerCell.Colspan = 5;
                     headerCell.BackgroundColor = new BaseColor(232, 232, 232);
                     headerCell.HorizontalAlignment = 1;
@@ -71,6 +77,8 @@ namespace TelecommunicationProvider.Data.Generators
                     document.Add(table);
                     document.Add(new Paragraph(new Phrase("\n")));
                 }
+
+                document.Add(new Paragraph(new Phrase("\n" + "Total User count: " + usersdata.Count())));
 
                 var footer = new Paragraph(new Phrase("User Report"));
                 footer.Alignment = 1;
