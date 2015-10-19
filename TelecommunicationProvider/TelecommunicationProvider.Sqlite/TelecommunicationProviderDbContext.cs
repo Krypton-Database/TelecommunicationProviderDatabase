@@ -1,6 +1,7 @@
 ﻿namespace TelecommunicationProvider.Sqlite
 {
     using System.Data.Entity;
+    using System.Data.SQLite;
 
     public class TelecommunicationProviderDbContext : DbContext
     {
@@ -12,4 +13,5 @@
 
         public DbSet<DifferentUserProviders> DifferentUserProviders { get; set; }
     }
+
 }
