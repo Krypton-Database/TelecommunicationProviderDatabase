@@ -18,15 +18,15 @@ namespace TelecommunicationProvider.Data.Generators
 
         public PdfReportGenerator()
         {
-            if (!Directory.Exists(workingDir))
+            if (!Directory.Exists(this.workingDir))
             {
-                Directory.CreateDirectory(workingDir);
+                Directory.CreateDirectory(this.workingDir);
             }
         }
 
         public void CreateContractReport(IQueryable<Contract> contract, string fileName, DateTime date)
         {
-            using (var fs = new FileStream(Path.Combine(workingDir, fileName), FileMode.Create, FileAccess.Write))
+            using (var fs = new FileStream(Path.Combine(this.workingDir, fileName), FileMode.Create, FileAccess.Write))
             {
                 Console.WriteLine("Generating of ContractReport.pdf initialized.");
 

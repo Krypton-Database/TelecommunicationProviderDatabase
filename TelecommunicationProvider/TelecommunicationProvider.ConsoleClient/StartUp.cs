@@ -97,7 +97,8 @@ namespace TelecommunicationProvider.ConsoleClient
 
                     case "xml export":
                         {
-                            xmlManipulator.ExportReportsToXml(db);
+                            var xml = new XmlManipulator();
+                            xml.ExportReportsToXml(db, @"../../../../OutputData/XML/Reports/");
                             break;
                         }
 
@@ -117,7 +118,7 @@ namespace TelecommunicationProvider.ConsoleClient
 
                     case "export json":
                         {
-                            var json = new JsonReportCorrect();
+                            var json = new JsonReportGenerator();
                             var listOfContracts = db.Contracts.ToList();
                             json.ExportContracts(listOfContracts, @"..\..\..\..\OutputData\JsonReports");
                             break;

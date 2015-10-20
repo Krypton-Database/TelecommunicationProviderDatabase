@@ -8,23 +8,23 @@
 
     public class XmlManipulator
     {
-       public void ImportContractsFromXml(TelecommunicationDbContext telecommunicationDbContext, string xmlDataPath)
-       {
-           XmlImporter xmlDataImporter = new XmlImporter();
-           ICollection<Contract> importedContractsFromXml =
-           xmlDataImporter.ImportContractsDataFromFile(xmlDataPath);
-           foreach (var contract in importedContractsFromXml)
-           {
-               telecommunicationDbContext.Contracts.Add(contract);
-           }
+        public void ImportContractsFromXml(TelecommunicationDbContext telecommunicationDbContext, string xmlDataPath)
+        {
+            XmlImporter xmlDataImporter = new XmlImporter();
+            ICollection<Contract> importedContractsFromXml =
+            xmlDataImporter.ImportContractsDataFromFile(xmlDataPath);
+            foreach (var contract in importedContractsFromXml)
+            {
+                telecommunicationDbContext.Contracts.Add(contract);
+            }
 
-           telecommunicationDbContext.SaveChanges();
-       }
+            telecommunicationDbContext.SaveChanges();
+        }
 
-       public void ExportReportsToXml(TelecommunicationDbContext telecommunicationDbContext)
-       {
-           XmlExporter exp = new XmlExporter();
-           exp.GenerateXmlReport(telecommunicationDbContext);
-       }
+        public void ExportReportsToXml(TelecommunicationDbContext telecommunicationDbContext, string filePath)
+        {
+            CorrectXmlReport exp = new CorrectXmlReport();
+            exp.GenerateXmlReport(filePath, telecommunicationDbContext);
+        }
     }
 }

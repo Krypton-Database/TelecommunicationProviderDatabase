@@ -1,5 +1,7 @@
 ﻿namespace TelecommunicationProvider.ConsoleClient.DataManipulators
 {
+    using System;
+
     using TelecommunicationProvider.Data;
     using TelecommunicationProvider.Models.SqlServerModels;
     using TelecommunicationProvider.MongoDb;
@@ -54,6 +56,7 @@
                 telecommunicationDbContext.Adresses.Add(address);
                 telecommunicationDbContext.SaveChanges();
             }
+            Console.WriteLine("Import from Mongo is ready");
         }
     }
 }
