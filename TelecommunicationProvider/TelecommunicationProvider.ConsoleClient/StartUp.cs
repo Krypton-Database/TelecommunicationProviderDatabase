@@ -101,7 +101,7 @@ namespace TelecommunicationProvider.ConsoleClient
 
                     case "create pdf":
                         {
-                            Console.Write("Please enter for which date you need the report (dd/mm/year): ");
+                            Console.Write("Please enter for which date you need the report (mm/dd/year): ");
                             DateTime date = Convert.ToDateTime(Console.ReadLine());
                             pdfManipulator.CreatePdfReport(db, PdfDataFileName, date);
                             break;
