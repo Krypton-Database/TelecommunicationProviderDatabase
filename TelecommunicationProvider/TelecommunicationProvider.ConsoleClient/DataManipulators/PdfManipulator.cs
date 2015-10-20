@@ -6,10 +6,16 @@
 
     public class PdfManipulator
     {
-        public void CreatePdfReport(TelecommunicationDbContext telecommunicationDbContext, string fileName, DateTime date)
+        public void CreatePdfContractReport(TelecommunicationDbContext telecommunicationDbContext, string fileName, DateTime date)
         {
             var pdfReport = new PdfReportGenerator();
-            pdfReport.CreateUserReport(telecommunicationDbContext.Contracts, fileName, date);
+            pdfReport.CreateContractReport(telecommunicationDbContext.Contracts, fileName, date);
+        }
+
+        public void CreatePdfUserReport(TelecommunicationDbContext telecommunicationDbContext, string fileName)
+        {
+            var pdfReport = new PdfReportGenerator();
+            pdfReport.CreateUserReport(telecommunicationDbContext.Users, fileName);
         }
     }
 }

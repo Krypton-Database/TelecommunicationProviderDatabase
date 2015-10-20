@@ -23,7 +23,8 @@ namespace TelecommunicationProvider.ConsoleClient
         private const string SampleContractsDataExcelFolderPath = @"..\..\..\..\InputData\Contracts\";
         private const string SampleContractsDataExcelFolderZipPathSource = @"..\..\..\..\InputData\Contracts.zip";
         /// private const string PdfDataFolderPath = @"..\..\..\..\OutputData\Pdf";
-        private const string PdfDataFileName = @"UsersReport.pdf";
+        private const string PdfDataFileNameContract = @"ContractReport.pdf";
+        private const string PdfDataFileNameUsers = @"UsersReport.pdf";
 
 
         public static void Main()
@@ -51,7 +52,8 @@ namespace TelecommunicationProvider.ConsoleClient
             Console.WriteLine("command /mongo import/ to import users, addresses and packages from mongo");
             Console.WriteLine("command /zipped excel files/ to import contracts from excel ");
             Console.WriteLine("command /xml export/ to export xml reports");
-            Console.WriteLine("command /create pdf/ to export pdf reports");
+            Console.WriteLine("command /create pdf contract/ to export pdf report for contracts for a date");
+            Console.WriteLine("command /create pdf user/ to export pdf reports for all users");
             Console.WriteLine("command /export json/ to export pdf reports");
             Console.WriteLine("command /import mysql/ to export pdf reports");
             Console.WriteLine("command /export excel/ to export excel reports");
@@ -99,11 +101,17 @@ namespace TelecommunicationProvider.ConsoleClient
                             break;
                         }
 
-                    case "create pdf":
+                    case "create pdf contract":
                         {
                             Console.Write("Please enter for which date you need the report (mm/dd/year): ");
                             DateTime date = Convert.ToDateTime(Console.ReadLine());
-                            pdfManipulator.CreatePdfReport(db, PdfDataFileName, date);
+                            pdfManipulator.CreatePdfContractReport(db, PdfDataFileNameContract, date);
+                            break;
+                        }
+
+                    case "create pdf user":
+                        {
+                            pdfManipulator.CreatePdfUserReport(db, PdfDataFileNameUsers);
                             break;
                         }
 
