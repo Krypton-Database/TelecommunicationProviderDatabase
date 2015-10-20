@@ -129,7 +129,7 @@ namespace TelecommunicationProvider.Data.Exporters
                 {
                     activeContracts = CheckActualContracts(contracts, new DateTime(year, i, 28));
                 }
-                annualIncome += activeContracts * package.Price;
+                annualIncome += (activeContracts * package.Price);
             }
 
             return annualIncome;
