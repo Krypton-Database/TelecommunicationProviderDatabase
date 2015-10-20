@@ -107,7 +107,18 @@ namespace TelecommunicationProvider.Data.Exporters
 
             for(var i = 1; i <= 12; i++)
             {
-                activeContracts = CheckActualContracts(contracts, new DateTime(year, i, 28));
+                if(i == 1)
+                {
+                    activeContracts = CheckActualContracts(contracts, new DateTime(year, i, 01));
+                }
+                else if (i == 12)
+                {
+                    activeContracts = CheckActualContracts(contracts, new DateTime(year, i, 31));
+                }
+                else
+                {
+                    activeContracts = CheckActualContracts(contracts, new DateTime(year, i, 28));
+                }
                 annualIncome += activeContracts * package.Price;
             }
 
