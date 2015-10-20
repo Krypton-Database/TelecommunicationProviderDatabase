@@ -51,6 +51,9 @@ namespace TelecommunicationProvider.Data.Generators
                 var contrCount = contractsAll.Count;
                 var userCount = 0;
 
+                document.Add(new Paragraph(new Phrase("\n" + "Report for Date: " + year.ToString() + "-" + month.ToString() + "-" + day.ToString())));
+                document.Add(new Paragraph(new Phrase("\n")));
+
                 for (int i = 0; i < contrCount; i++)
                 {
                     var singleContract = contractsAll[i];
