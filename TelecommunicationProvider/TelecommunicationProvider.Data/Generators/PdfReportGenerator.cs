@@ -51,9 +51,6 @@ namespace TelecommunicationProvider.Data.Generators
                 var contrCount = contractsAll.Count;
                 var userCount = 0;
 
-                document.Add(new Paragraph(new Phrase("\n" + "Report for Date: " + year.ToString() + "-" + month.ToString() + "-" + day.ToString())));
-                document.Add(new Paragraph(new Phrase("\n")));
-
                 for (int i = 0; i < contrCount; i++)
                 {
                     var singleContract = contractsAll[i];
@@ -72,17 +69,34 @@ namespace TelecommunicationProvider.Data.Generators
                     table.AddCell("Start Date");
                     table.AddCell("End Date");
 
+                    var countIfFirst = 0;
+
                     foreach (var contr in singleContract)
                     {
-                        if (contr.StartDate.Year == year && contr.StartDate.Month == month && contr.StartDate.Day == day)
+                        if (countIfFirst < 1)
                         {
-                            table.AddCell(contr.FirstName);
-                            table.AddCell(contr.LastName);
-                            table.AddCell(contr.City);
-                            table.AddCell(contr.StartDate.Year.ToString() + "-" + contr.StartDate.Month.ToString() + "-" + contr.StartDate.Day.ToString());
-                            table.AddCell(contr.EndDate.Year.ToString() + "-" + contr.EndDate.Month.ToString() + "-" + contr.EndDate.Day.ToString());
-                            userCount = userCount + 1;
+                            if ((contr.StartDate.Year > year && year < contr.EndDate.Year)
+                            && (contr.StartDate.Month > month && month < contr.EndDate.Month)
+                            && (contr.StartDate.Day > day && day < contr.EndDate.Day))
+                            {
+                                document.Add(new Paragraph(new Phrase("\n" + "Report for Date: " + year.ToString() + "-" + month.ToString() + "-" + day.ToString())));
+                                document.Add(new Paragraph(new Phrase("\n")));
+                                countIfFirst = countIfFirst + 1;
+                            }
+                            else
+                            {
+                                document.Add(new Paragraph(new Phrase("\n" + "No Contracts found for this period. Below are generated all contracts: ")));
+                                document.Add(new Paragraph(new Phrase("\n")));
+                                countIfFirst = countIfFirst + 1;
+                            }
                         }
+
+                        table.AddCell(contr.FirstName);
+                        table.AddCell(contr.LastName);
+                        table.AddCell(contr.City);
+                        table.AddCell(contr.StartDate.Year.ToString() + "-" + contr.StartDate.Month.ToString() + "-" + contr.StartDate.Day.ToString());
+                        table.AddCell(contr.EndDate.Year.ToString() + "-" + contr.EndDate.Month.ToString() + "-" + contr.EndDate.Day.ToString());
+                        userCount = userCount + 1;
                     }
 
                     document.Add(table);
