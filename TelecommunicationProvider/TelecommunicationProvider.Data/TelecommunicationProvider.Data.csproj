@@ -94,7 +94,6 @@
     <Compile Include="Exporters\ExcelExporter.cs" />
     <Compile Include="Exporters\Report.cs" />
     <Compile Include="Exporters\XmlExporter.cs" />
-    <Compile Include="Generators\JsonReportCorrect.cs" />
     <Compile Include="Generators\JsonReportGenerator.cs" />
     <Compile Include="Generators\PdfReportGenerator.cs" />
     <Compile Include="Importers\ExcelImporter.cs" />
