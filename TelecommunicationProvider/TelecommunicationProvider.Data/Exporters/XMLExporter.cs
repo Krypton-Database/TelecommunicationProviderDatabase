@@ -22,7 +22,6 @@ namespace TelecommunicationProvider.Data.Exporters
         private const int YearOfFourthReport = 2014;
         private const int YearOfFifthReport = 2015;
 
-
         public void GenerateXmlReport(TelecommunicationDbContext db)
         {
             Encoding encoding = Encoding.GetEncoding("windows-1251");
@@ -73,6 +72,7 @@ namespace TelecommunicationProvider.Data.Exporters
 
                     writer.WriteEndElement();
                 }
+
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
                 Console.WriteLine("XML file is ready!");
@@ -95,7 +95,7 @@ namespace TelecommunicationProvider.Data.Exporters
 
             foreach (Package package in packages)
             {
-                annualIncome = AnnualIncome(year, package.Contracts, package);
+                annualIncome = this.AnnualIncome(year, package.Contracts, package);
                 summeries.Add(
                     new Report(year, package.Name, annualIncome));
             }
@@ -105,7 +105,7 @@ namespace TelecommunicationProvider.Data.Exporters
 
         private int CheckActualContracts(ICollection<Contract> contracts, DateTime reportDate)
         {
-            int result = contracts.Select(c => c.EndDate < reportDate).ToList().Count();
+            int result = contracts.Where(c => (c.EndDate - reportDate).TotalDays > 0).ToList().Count();
             return result;
         }
 
@@ -115,21 +115,22 @@ namespace TelecommunicationProvider.Data.Exporters
 
             int activeContracts;
 
-            for(var i = 1; i <= 12; i++)
+            for (var i = 1; i <= 12; i++)
             {
-                if(i == 1)
+                if (i == 1)
                 {
-                    activeContracts = CheckActualContracts(contracts, new DateTime(year, i, 01));
+                    activeContracts = this.CheckActualContracts(contracts, new DateTime(year, i, 01));
                 }
                 else if (i == 12)
                 {
-                    activeContracts = CheckActualContracts(contracts, new DateTime(year, i, 31));
+                    activeContracts = this.CheckActualContracts(contracts, new DateTime(year, i, 31));
                 }
                 else
                 {
-                    activeContracts = CheckActualContracts(contracts, new DateTime(year, i, 28));
+                    activeContracts = this.CheckActualContracts(contracts, new DateTime(year, i, 28));
                 }
-                annualIncome += (activeContracts * package.Price);
+
+                annualIncome += activeContracts * package.Price;
             }
 
             return annualIncome;
