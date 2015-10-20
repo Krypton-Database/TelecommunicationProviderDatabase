@@ -16,9 +16,11 @@ namespace TelecommunicationProvider.Data.Exporters
     {
         private const string OutputPath = "../../../../OutputData/XML/Reports/";
         private const string OutputFileName = "XMLReport.xml";
-        private const int YearOfFirstReport = 2009;
+        private const int YearOfFirstReport = 2011;
         private const int YearOfSecondReport = 2012;
-        private const int YearOfThirdReport = 2015;
+        private const int YearOfThirdReport = 2013;
+        private const int YearOfFourthReport = 2014;
+        private const int YearOfFifthReport = 2015;
 
 
         public void GenerateXmlReport(TelecommunicationDbContext db)
@@ -39,11 +41,19 @@ namespace TelecommunicationProvider.Data.Exporters
 
                 var packages = db.Packages.ToList();
 
-                var summaryFromThisYear = this.GetDataFromDB(packages, YearOfFirstReport);
-                var summaryFromBeforeFiveYears = this.GetDataFromDB(packages, YearOfSecondReport);
-                var summaryFromBeforeEightYears = this.GetDataFromDB(packages, YearOfThirdReport);
+                var summaryFromThеFirstYear = this.GetDataFromDB(packages, YearOfFirstReport);
+                var summaryFromTheSecondYear = this.GetDataFromDB(packages, YearOfSecondReport);
+                var summaryFromTheThirdYear = this.GetDataFromDB(packages, YearOfThirdReport);
+                var summaryFromFourthYear = this.GetDataFromDB(packages, YearOfFourthReport);
+                var summaryFromFifthYear = this.GetDataFromDB(packages, YearOfFifthReport);
 
-                var summariesAll = summaryFromThisYear.Concat(summaryFromBeforeFiveYears).Concat(summaryFromBeforeEightYears).ToList().GroupBy(s => s.PackName);
+                var summariesAll = summaryFromThеFirstYear
+                    .Concat(summaryFromTheSecondYear)
+                    .Concat(summaryFromTheThirdYear)
+                    .Concat(summaryFromFourthYear)
+                    .Concat(summaryFromFifthYear)
+                    .ToList()
+                    .GroupBy(s => s.PackName);
 
                 writer.WriteStartDocument();
                 writer.WriteStartElement("sales");
