@@ -15,6 +15,7 @@ namespace TelecommunicationProvider.ConsoleClient
     using TelecommunicationProvider.Data.Migrations;
     using TelecommunicationProvider.Models.SqlServerModels;
     using TelecommunicationProvider.MongoDb;
+    using TelecommunicationProvider.Data.Exporters;
 
     public class Startup
     {
@@ -53,6 +54,7 @@ namespace TelecommunicationProvider.ConsoleClient
             Console.WriteLine("command /create pdf/ to export pdf reports");
             Console.WriteLine("command /export json/ to export pdf reports");
             Console.WriteLine("command /import mysql/ to export pdf reports");
+            Console.WriteLine("command /export excel/ to export excel reports");
             var command = string.Empty;
 
 
@@ -99,7 +101,9 @@ namespace TelecommunicationProvider.ConsoleClient
 
                     case "create pdf":
                         {
-                            pdfManipulator.CreatePdfReport(db, PdfDataFileName);
+                            Console.Write("Please enter for which date you need the report (dd/mm/year): ");
+                            DateTime date = Convert.ToDateTime(Console.ReadLine());
+                            pdfManipulator.CreatePdfReport(db, PdfDataFileName, date);
                             break;
                         }
 

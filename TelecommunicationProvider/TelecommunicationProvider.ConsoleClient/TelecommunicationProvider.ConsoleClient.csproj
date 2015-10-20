@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TelecommunicationProvider.Data\External Assemblies\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -64,6 +68,10 @@
     <Reference Include="Spire.Pdf">
       <HintPath>..\packages\Spire.PDF.3.5.80\lib\net40\Spire.Pdf.dll</HintPath>
     </Reference>
+    <Reference Include="SpreadsheetLight, Version=3.4.4.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.4.4\lib\SpreadsheetLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -84,6 +92,7 @@
     <Reference Include="Telerik.OpenAccess.Runtime">
       <HintPath>..\packages\Telerik.DataAccess.Core.2015.3.926.1\lib\net40\Telerik.OpenAccess.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataManipulators\DataBaseCreator.cs" />
