@@ -10,22 +10,25 @@ namespace TelecommunicationProvider.ConsoleClient
     using System.Linq;
     using TelecommunicationProvider.ConsoleClient.DataManipulators;
     using TelecommunicationProvider.Data;
-    using Data.Exporters;
+    using TelecommunicationProvider.Data.Exporters;
     using TelecommunicationProvider.Data.Generators;
     using TelecommunicationProvider.Data.Migrations;
     using TelecommunicationProvider.Models.SqlServerModels;
     using TelecommunicationProvider.MongoDb;
-    using TelecommunicationProvider.Data.Exporters;
 
     public class Startup
     {
         private const string SampleContractsDataXmlFilePath = @"..\..\..\..\InputData\Contracts-01-Oct-2015.xml";
-        private const string SampleContractsDataExcelFolderPath = @"..\..\..\..\InputData\Contracts\";
-        private const string SampleContractsDataExcelFolderZipPathSource = @"..\..\..\..\InputData\Contracts.zip";
-        /// private const string PdfDataFolderPath = @"..\..\..\..\OutputData\Pdf";
-        private const string PdfDataFileNameContract = @"ContractReport.pdf";
-        private const string PdfDataFileNameUsers = @"UsersReport.pdf";
 
+        private const string SampleContractsDataExcelFolderPath = @"..\..\..\..\InputData\Contracts\";
+
+        private const string SampleContractsDataExcelFolderZipPathSource = @"..\..\..\..\InputData\Contracts.zip";
+
+        //// private const string PdfDataFolderPath = @"..\..\..\..\OutputData\Pdf";
+        
+        private const string PdfDataFileNameContract = @"ContractReport.pdf";
+
+        private const string PdfDataFileNameUsers = @"UsersReport.pdf";
 
         public static void Main()
         {
@@ -59,7 +62,6 @@ namespace TelecommunicationProvider.ConsoleClient
             Console.WriteLine("command /export excel/ to export excel reports");
             var command = string.Empty;
 
-
             while ((command = Console.ReadLine()) != "exit")
             {
                 switch (command)
@@ -71,11 +73,13 @@ namespace TelecommunicationProvider.ConsoleClient
                             Console.WriteLine("Database created");
                             break;
                         }
+
                     case "xml import":
                         {
                             xmlManipulator.ImportContractsFromXml(db, SampleContractsDataXmlFilePath);
                             break;
                         }
+
                     case "excel import":
                         {
                             excelManipulator.ImportContractsFromExcelFilesInFolder(
@@ -83,6 +87,7 @@ namespace TelecommunicationProvider.ConsoleClient
                                 SampleContractsDataExcelFolderPath);
                             break;
                         }
+
                     case "mongo import":
                         {
                             mongoManipulator.ImportDataFromMongo(db, databaseMongoDbContext);

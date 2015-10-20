@@ -18,6 +18,7 @@
             {
                 Directory.CreateDirectory(directory);
             }
+
             foreach (var item in contracts)
             {
                 var itemToJson =
@@ -31,7 +32,6 @@
                         };
 
                 jsonReport = JsonConvert.SerializeObject(itemToJson, Formatting.Indented);
-
 
                 File.WriteAllText(directory + '/' + item.Id.ToString() + ".json", jsonReport);
                 Console.WriteLine("Generating of json reports completed!");

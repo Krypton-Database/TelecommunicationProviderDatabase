@@ -97,6 +97,7 @@ namespace TelecommunicationProvider.Data.Importers
                         }
                     }
                 }
+
                 Console.WriteLine("Importing data from excel completed!");
                 return importedContracts;
             }

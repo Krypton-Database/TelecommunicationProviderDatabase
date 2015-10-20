@@ -10,16 +10,15 @@ namespace TelecommunicationProvider.MySqlDb
 
     public class TelecommunicationProviderMySqlData
     {
-        private const string ConnectionString = "server=localhost;database=TelecommunicationProviderDb;uid=root;pwd={0};";
+        public readonly TelecommunicationProviderMySqlDbContext Context;
 
-        public readonly TelecommunicationProviderMySqlDbContext context;
-
+        private const string ConnectionString = "server=localhost;database=TelecommunicationProviderDb;uid=root;pwd={0};";     
 
         public TelecommunicationProviderMySqlData()
         {
             var password = this.MySqlPwdPrompt();
-            this.context = new TelecommunicationProviderMySqlDbContext(string.Format(ConnectionString, password));
-            this.ModelsMySqlRepository = new Repository(this.context);
+            this.Context = new TelecommunicationProviderMySqlDbContext(string.Format(ConnectionString, password));
+            this.ModelsMySqlRepository = new Repository(this.Context);
             this.VerifyDatabase();
         }
 
@@ -27,7 +26,7 @@ namespace TelecommunicationProvider.MySqlDb
 
         private void VerifyDatabase()
         {
-            var schemaHandler = this.context.GetSchemaHandler();
+            var schemaHandler = this.Context.GetSchemaHandler();
             this.EnsureDB(schemaHandler);
         }
 

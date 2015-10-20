@@ -13,9 +13,9 @@ namespace TelecommunicationProvider.Data.Generators
 
     public class JsonReportGenerator
     {
-        private readonly Package package = new Package();
         private const string OutputPath = "../../../../OutputData/JSON/Reports/";
-
+        private readonly Package package = new Package();
+        
         public JsonReportGenerator()
         {
             this.Income = 0;

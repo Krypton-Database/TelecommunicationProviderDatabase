@@ -12,11 +12,11 @@ namespace TelecommunicationProvider.Data.Importers
 
     public class XmlImporter
     {
-        //private const string XmlFileExtensionPattern = @".xml\b";
+        //// private const string XmlFileExtensionPattern = @".xml\b";
 
         //// private const string ContractsXmlFilePattern = @"*+\Contracts-\d{2}-\w{3}-\d{4}.xml\b";
 
-       // private const string InvalidFileNameMessage = "Provided file name is invalid";
+       //// private const string InvalidFileNameMessage = "Provided file name is invalid";
 
         public ICollection<Contract> ImportContractsDataFromFile(string filePath)
         {
@@ -63,6 +63,7 @@ namespace TelecommunicationProvider.Data.Importers
                     }
                 }
             }
+
             Console.WriteLine("Importing data from xml file completed!");
             return importedContracts;
         }

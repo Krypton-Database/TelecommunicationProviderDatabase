@@ -12,8 +12,7 @@ namespace TelecommunicationProvider.Data.Importers
     public class ZipExtractor
     {
         public void Extract(string sourcePath, string destinationPath)
-        {
-           
+        {          
             using (ZipFile zip = ZipFile.Read(sourcePath))
             {
                 foreach (ZipEntry entry in zip)
@@ -21,6 +20,7 @@ namespace TelecommunicationProvider.Data.Importers
                     entry.Extract(destinationPath, ExtractExistingFileAction.OverwriteSilently);
                 }
             }
+
             Console.WriteLine("Folder is extracted");
         }
     }
