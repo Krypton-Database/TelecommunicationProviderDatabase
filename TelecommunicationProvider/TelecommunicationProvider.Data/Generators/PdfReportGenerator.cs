@@ -74,8 +74,8 @@ namespace TelecommunicationProvider.Data.Generators
                     foreach (var contr in singleContract)
                     {
                         bool isInRange = (contr.StartDate.Day <= day && day <= contr.EndDate.Day)
-                            || (contr.StartDate.Month <= month && month <= contr.EndDate.Month)
-                            || (contr.StartDate.Year <= year && year <= contr.EndDate.Year);
+                            && (contr.StartDate.Month <= month && month <= contr.EndDate.Month)
+                            && (contr.StartDate.Year <= year && year <= contr.EndDate.Year);
                         if (countIfFirst < 1)
                         {
                             if (isInRange)
@@ -99,12 +99,13 @@ namespace TelecommunicationProvider.Data.Generators
                         table.AddCell(contr.EndDate.Year.ToString() + "-" + contr.EndDate.Month.ToString() + "-" + contr.EndDate.Day.ToString());
                         userCount = userCount + 1;
                     }
-
+                 
                     document.Add(table);
                     document.Add(new Paragraph(new Phrase("\n")));
                 }
 
                 document.Add(new Paragraph(new Phrase("\n" + "Total User count: " + userCount)));
+                userCount = 0;
 
                 var footer = new Paragraph(new Phrase("Contract Report"));
                 footer.Alignment = 1;
@@ -137,6 +138,7 @@ namespace TelecommunicationProvider.Data.Generators
 
                 var users = groups;
                 var userCount = users.Count;
+                var uniqueUserCount = 0;
 
                 for (int i = 0; i < userCount; i++)
                 {
@@ -163,13 +165,15 @@ namespace TelecommunicationProvider.Data.Generators
                         table.AddCell(user.Address.City);
                         table.AddCell(user.Address.Country);
                         table.AddCell(user.Address.ZipCode);
+                        uniqueUserCount = uniqueUserCount + 1;
                     }
 
                     document.Add(table);
                     document.Add(new Paragraph(new Phrase("\n")));
                 }
 
-                document.Add(new Paragraph(new Phrase("\n" + "Total User count: " + usersdata.Count())));
+                document.Add(new Paragraph(new Phrase("\n" + "Total User count: " + uniqueUserCount)));
+                uniqueUserCount = 0;
 
                 var footer = new Paragraph(new Phrase("User Report"));
                 footer.Alignment = 1;
