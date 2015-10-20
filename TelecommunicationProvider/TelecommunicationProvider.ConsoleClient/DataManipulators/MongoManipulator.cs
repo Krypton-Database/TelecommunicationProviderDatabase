@@ -56,6 +56,7 @@
                 telecommunicationDbContext.Adresses.Add(address);
                 telecommunicationDbContext.SaveChanges();
             }
+
             Console.WriteLine("Import from Mongo is ready");
         }
     }
