@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TelecommunicationProvider.MySqlDb
+﻿namespace TelecommunicationProvider.MySqlDb
 {
+    using System;
+    using System.Linq;
     using TelecommunicationProvider.MySqlDb.Models;
 
     public class Repository

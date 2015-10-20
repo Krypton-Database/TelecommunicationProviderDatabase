@@ -75,7 +75,7 @@ namespace TelecommunicationProvider.Data.Generators
                     {
                         bool isInRange = (contr.StartDate.Day <= day && day <= contr.EndDate.Day)
                             || (contr.StartDate.Month <= month && month <= contr.EndDate.Month)
-                            ||(contr.StartDate.Year <= year && year <= contr.EndDate.Year);
+                            || (contr.StartDate.Year <= year && year <= contr.EndDate.Year);
                         if (countIfFirst < 1)
                         {
                             if (isInRange)
@@ -118,14 +118,13 @@ namespace TelecommunicationProvider.Data.Generators
 
         public void CreateUserReport(IQueryable<User> usersdata, string fileName)
         {
-            using (var fs = new FileStream(Path.Combine(workingDir, fileName), FileMode.Create, FileAccess.Write))
+            using (var fs = new FileStream(Path.Combine(this.workingDir, fileName), FileMode.Create, FileAccess.Write))
             {
                 Console.WriteLine("Generating of UsersReport.pdf initialized.");
 
                 var document = new Document(PageSize.A4, 2, 2, 30, 30);
                 PdfWriter.GetInstance(document, fs);
                 document.Open();
-
 
                 var groups = usersdata.Select(a => new
                 {

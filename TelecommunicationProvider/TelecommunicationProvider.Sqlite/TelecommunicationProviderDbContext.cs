@@ -12,5 +12,4 @@
 
         public DbSet<DifferentUserProviders> DifferentUserProviders { get; set; }
     }
-
 }

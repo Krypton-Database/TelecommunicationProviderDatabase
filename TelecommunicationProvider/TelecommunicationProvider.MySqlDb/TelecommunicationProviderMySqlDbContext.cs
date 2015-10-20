@@ -5,8 +5,8 @@
 
 namespace TelecommunicationProvider.MySqlDb
 {
-    using Models;
     using System.Data.Entity;
+    using Models;   
     using Telerik.OpenAccess;
     using Telerik.OpenAccess.Metadata;
 
